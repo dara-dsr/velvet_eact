@@ -65,8 +65,7 @@ function TourDetails() {
           backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/images/zayvka.jpg")`
         }}
       >
-        <h2 className='mb-8 text-center text-4xl font-bold'>Оставить заявку на тур</h2>
-
+        
         <ContactForm tourId={tour.id} />
       </section>
     </section>

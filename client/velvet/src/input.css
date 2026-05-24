@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #111111;
+}
+
+@layer components {
+  .section-title {
+    @apply mb-8 text-center text-3xl font-bold;
+  }
+
+  .btn-primary {
+    @apply rounded-full bg-wine px-8 py-3 text-white transition hover:bg-wineDark;
+  }
+}

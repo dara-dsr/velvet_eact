@@ -35,7 +35,7 @@ function Profile() {
   }
 
   return (
-    <Container As='section' className='min-h-[70vh] px-6 py-14'>
+    <Container As='section' className='min-h-[80vh] px-6 py-14'>
       <h1 className='mb-10 text-5xl font-bold'>Личный кабинет</h1>
 
       <div className='mb-10 rounded-3xl p-8 shadow-md'>

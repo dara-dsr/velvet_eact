@@ -72,7 +72,7 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://velvet-eact-frontend.onrender.com",
+    "https://velvet-eact-frontend-myvx.onrender.com",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://velvet-eact-frontend.onrender.com",

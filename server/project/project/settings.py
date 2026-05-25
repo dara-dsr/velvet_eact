@@ -28,7 +28,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['.onrender.com']
+ALLOWED_HOSTS = [
+    ".onrender.com",
+]
 
 
 # Application definition
@@ -70,7 +72,7 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://velvet-eact.onrender.com",
+    "https://velvet-eact-frontend.onrender.com",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://velvet-eact-frontend.onrender.com",

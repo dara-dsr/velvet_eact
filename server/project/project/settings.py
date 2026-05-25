@@ -23,13 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-z7vx5-39um@h#&4gfyr)*$k^o+d0419mb&ymh$+%5cvpa!%rud'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = [
     ".onrender.com",
+    "localhost",
+    "127.0.0.1",
 ]
 
 
@@ -71,11 +73,17 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
 }
 
+FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:3000")
+
 CORS_ALLOWED_ORIGINS = [
-    "https://velvet-eact-frontend-myvx.onrender.com",
+    FRONTEND_URL,
+    "http://localhost:3000",
+    "http://192.168.3.8:3000",
 ]
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://velvet-eact-frontend.onrender.com",
+    FRONTEND_URL,
+    "https://*.onrender.com",
 ]
 
 CORS_ALLOWED_HEADERS = [
@@ -89,7 +97,12 @@ CORS_ALLOWED_HEADERS = [
 CORS_ALLOWED_METHODS = [
     'GET',
     'POST',
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
 ]
+
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
@@ -113,12 +126,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
-}
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True,
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -155,8 +179,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+if (BASE_DIR / "static").exists():
+    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

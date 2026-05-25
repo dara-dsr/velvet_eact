@@ -8,6 +8,7 @@ from .serializers import TourSerializer, ApplicationSerializer, RegisterSerializ
 
 class TourListView(generics.ListAPIView):
     serializer_class = TourSerializer
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         queryset = Tour.objects.all()
@@ -35,10 +36,12 @@ class TourListView(generics.ListAPIView):
 class TourDetailView(generics.RetrieveAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourSerializer
+    permission_classes = [permissions.AllowAny]
 
 
 class ApplicationCreateView(generics.CreateAPIView):
     serializer_class = ApplicationSerializer
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         user = self.request.user if self.request.user.is_authenticated else None
@@ -56,6 +59,7 @@ class ProfileView(generics.ListAPIView):
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
+    permission_classes = [permissions.AllowAny]
 
 
 class MeView(generics.GenericAPIView):

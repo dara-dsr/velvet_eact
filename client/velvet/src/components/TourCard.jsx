@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 
 function TourCard({ tour }) {
+  const BACKEND_URL = 'https://velvet-eact-backend.onrender.com';
   return (
     <div className='relative h-80 overflow-hidden rounded-2xl shadow-md transition hover:scale-105'>
-      <img src={tour.image} alt={tour.title} className='h-full w-full object-cover' />
+      <img src={tour.image?.startsWith('http')
+      ? tour.image
+      : `${BACKEND_URL}${tour.image}`
+      } alt={tour.title} className='h-full w-full object-cover' />
 
       <div className='absolute inset-0 bg-black/10'></div>
 

@@ -74,10 +74,10 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
 }
 
-FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:3000")
+FRONTEND_URL = "https://velvet-eact-frontend.onrender.com"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "https://velvet-eact-frontend.onrender.com",
     "http://127.0.0.1:3000",
 ]
 

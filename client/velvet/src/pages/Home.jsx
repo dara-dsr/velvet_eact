@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import api from '../api/api';
 
 import ContactForm from '../components/ContactForm';
 import Hero from '../components/Hero';

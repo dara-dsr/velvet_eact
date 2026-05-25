@@ -1,6 +1,7 @@
 import Container from '../components/Container';
 import { facts, cities, seasons, culture, factsList, tips } from '../data/about';
 
+
 function AboutJapan() {
   return (
     <Container As='section' className='py-14'>

@@ -1,6 +1,7 @@
 import Container from '../components/Container'
 import Tours from '../components/Tours'
 
+
 export default function ToursPage() {
   return (
     <Container className='py-14 min-h-[80vh]'>

@@ -39,9 +39,7 @@ function App() {
             <Route
               path='/tours/:id'
               element={
-                <ProtectedRoute>
                   <TourDetails />
-                </ProtectedRoute>
               }
             />
             <Route path='/about' element={<AboutJapan />} />

@@ -7,6 +7,35 @@ from django.utils.html import format_html
 from .models import Tour, Application, UserProfile, Review
 
 
+class CitiesField(forms.CharField):
+    """Comma-separated text input that serializes to/from a list."""
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('required', False)
+        kwargs.setdefault('help_text', 'Города маршрута через запятую: Токио, Киото, Осака')
+        kwargs.setdefault('widget', forms.TextInput(attrs={'style': 'width:100%', 'placeholder': 'Токио, Киото, Осака'}))
+        super().__init__(*args, **kwargs)
+
+    def prepare_value(self, value):
+        if isinstance(value, list):
+            return ', '.join(value)
+        return value or ''
+
+    def to_python(self, value):
+        raw = super().to_python(value)
+        if not raw:
+            return []
+        return [c.strip() for c in raw.split(',') if c.strip()]
+
+
+class TourAdminForm(forms.ModelForm):
+    cities = CitiesField(label='Маршрут (города)')
+
+    class Meta:
+        model = Tour
+        fields = '__all__'
+
+
 class CustomUserChangeForm(UserChangeForm):
     phone = forms.CharField(label="Телефон", max_length=30, required=False)
     avatar = forms.ImageField(label="Фото профиля", required=False, widget=forms.ClearableFileInput)
@@ -69,9 +98,14 @@ admin.site.register(User, CustomUserAdmin)
 
 @admin.register(Tour)
 class TourAdmin(admin.ModelAdmin):
-    list_display = ("title", "city", "season", "duration", "price")
-    list_filter = ("season", "city")
-    search_fields = ("title", "city")
+    form = TourAdminForm
+    list_display = ("title", "get_route", "season", "duration", "price")
+    list_filter = ("season",)
+    search_fields = ("title",)
+
+    @admin.display(description="Маршрут")
+    def get_route(self, obj):
+        return ' → '.join(obj.cities) if obj.cities else '—'
 
 
 @admin.register(Application)

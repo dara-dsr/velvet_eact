@@ -5,9 +5,16 @@ import Tours from '../components/Tours'
 export default function ToursPage() {
   return (
     <Container className='py-14 min-h-[80vh]'>
-      <h1 className='mb-5 text-center text-5xl font-bold'>Туры в Японию</h1>
+      <div
+        className='flex h-[300px] flex-col items-center justify-center rounded-3xl bg-cover bg-center px-6 text-center text-white shadow-lg'
+        style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url("/photos/japan-pattern.jpg")` }}
+      >
+        <h1 className='text-5xl font-bold drop-shadow-[0_2px_10px_#900035] md:text-6xl'>Туры в Японию</h1>
 
-      <p className='mb-10 text-center text-lg'>Выберите подходящий сезон, город, длительность и бюджет поездки.</p>
+        <p className='mt-5 max-w-2xl text-lg leading-relaxed'>
+          Выберите подходящий сезон, город, длительность и бюджет поездки.
+        </p>
+      </div>
 
       <Tours />
     </Container>

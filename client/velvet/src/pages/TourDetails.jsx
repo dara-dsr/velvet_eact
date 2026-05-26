@@ -52,8 +52,22 @@ function TourDetails() {
       <div className='mt-6 grid gap-4 grid-cols-1 sm:grid-cols-3 sm:mt-8 sm:gap-6'>
         <div className='rounded-2xl p-5 shadow text-sm sm:text-base'>Длительность: <b>{tour.duration} дней</b></div>
         <div className='rounded-2xl p-5 shadow text-sm sm:text-base'>Стоимость: <b>{Number(tour.price).toLocaleString()} ₽</b></div>
-        <div className='rounded-2xl p-5 shadow text-sm sm:text-base'>Город: <b>{tour.city}</b></div>
+        <div className='rounded-2xl p-5 shadow text-sm sm:text-base'>Сезон: <b>{tour.season}</b></div>
       </div>
+
+      {Array.isArray(tour.cities) && tour.cities.length > 0 && (
+        <div className='mt-6 rounded-2xl p-5 shadow'>
+          <p className='mb-3 text-sm text-gray-500'>Маршрут</p>
+          <div className='flex flex-wrap items-center gap-2'>
+            {tour.cities.map((city, i) => (
+              <span key={i} className='flex items-center gap-2'>
+                {i > 0 && <span className='text-gray-300 text-lg'>→</span>}
+                <span className='rounded-full bg-gray-100 px-3 py-1 text-sm font-medium'>{city}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className='mt-8 sm:mt-10'>
         <h2 className='mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl'>Описание тура</h2>

@@ -24,7 +24,12 @@ class TourListView(generics.ListAPIView):
             queryset = queryset.filter(season=season)
 
         if city:
-            queryset = queryset.filter(city__icontains=city)
+            city_lower = city.lower()
+            matching_ids = [
+                t.id for t in queryset
+                if any(city_lower in c.lower() for c in t.cities)
+            ]
+            queryset = queryset.filter(id__in=matching_ids)
 
         if duration:
             queryset = queryset.filter(duration__lte=duration)

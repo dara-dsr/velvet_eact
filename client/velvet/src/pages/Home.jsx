@@ -136,7 +136,7 @@ function Home() {
         <Tours isDemo />
       </section>
 
-      <section className='py-14'>
+      <section className='pb-14'>
         <h2 className='section-title'>Отзывы</h2>
         <div className='grid gap-8 md:grid-cols-3'>
           {reviews.map(item => (

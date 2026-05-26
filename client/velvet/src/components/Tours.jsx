@@ -10,7 +10,7 @@ const schema = z.object({
   season: z.string(),
   city: z.string(),
   duration: z.string(),
-  budget: z.string()
+  budget: z.string(),
 });
 
 export default function Tours({ isDemo }) {

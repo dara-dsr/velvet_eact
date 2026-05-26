@@ -29,7 +29,7 @@ class Tour(models.Model):
 
     title = models.CharField(max_length=200)
     description = models.TextField()
-    city = models.CharField(max_length=100)
+    cities = models.JSONField(default=list, blank=True)
     season = models.CharField(max_length=50, choices=SEASONS)
     duration = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)

@@ -32,7 +32,7 @@ function Profile() {
 
       <div className='mb-10 rounded-3xl p-8 shadow-md'>
         <p className='flex items-center gap-2 text-lg'>
-          Логин: {!user ? <Skeleton className='h-5 w-20' /> : <b>@{user.username}</b>}
+          Логин: {!user ? <Skeleton className='h-5 w-20' /> : <b>{user.username}</b>}
         </p>
 
         <p className='flex items-center gap-2 text-lg'>

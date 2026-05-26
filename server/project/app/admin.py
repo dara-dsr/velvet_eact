@@ -122,7 +122,7 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ("user__username", "user__first_name", "user__last_name", "tour__title", "text")
     list_editable = ("status",)
     ordering = ("-created_at",)
-    readonly_fields = ("user", "tour", "text", "created_at")
+    readonly_fields = ("user", "tour", "created_at")
 
     @admin.display(description="Автор")
     def get_author(self, obj):

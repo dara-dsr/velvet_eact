@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Container from '../components/Container';
-import { facts, cities, seasons, culture, factsList, tips } from '../data/about';
+import { facts, cities, seasons, culture, factsList, tips, islandStats, mainIslands } from '../data/about';
 
 
 function AboutJapan() {
@@ -64,6 +64,52 @@ function AboutJapan() {
           />
         </div>
       </div>
+
+      <section className='my-14 overflow-hidden rounded-3xl p-8 text-wine lg:p-12' aria-label="Острова Японии">
+        <div className='grid items-center gap-10 lg:grid-cols-2'>
+          <img loading="lazy" src='/photos/island.jpg' alt='Острова Японии' className='h-[380px] w-full rounded-2xl object-cover shadow-xl lg:h-[440px]' />
+          <div>
+            <h2 className='mb-4 text-4xl font-bold uppercase tracking-wide'>Острова Японии</h2>
+            <p className='mb-8 text-lg leading-relaxed text-black'>
+              Япония — архипелаг, состоящий из более чем 6 тысяч островов. Здесь гармонично сочетаются древние традиции и современные технологии, уникальная природа и урбанистические пейзажи.
+            </p>
+            <div className='mb-5 grid grid-cols-2 gap-4 rounded-2xl bg-pink-50 p-6'>
+              {islandStats.map(([num, label]) => (
+                <div key={label} className='text-center'>
+                  <p className='text-3xl font-bold text-pink-600'>{num}</p>
+                  <p className='mt-1 text-xs uppercase tracking-widest text-black bg-pink-50'>{label}</p>
+                </div>
+              ))}
+            </div>
+            <div className='rounded-2xl bg-pink-50 px-6 py-5'>
+              <p className='mb-4 text-center text-sm font-bold uppercase tracking-widest text-black'>4 главных острова</p>
+              <div className='flex flex-wrap justify-center gap-x-8 gap-y-2'>
+                {mainIslands.map((island, i) => (
+                  <span key={island.title} className='font-bold uppercase tracking-wide'>
+                    {i + 1}. {island.title}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className='mb-14 overflow-hidden rounded-3xl px-8 py-10 text-wine' aria-label="Основные острова">
+        <h2 className='section-title text-black'>Основные острова</h2>
+        <div className='mx-auto mt-8 mb-8 h-1 w-24 rounded-full bg-wine'></div>
+        <div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-4'>
+          {mainIslands.map(island => (
+            <div key={island.title} className='overflow-hidden rounded-2xl bg-pink-50'>
+              <img loading="lazy" src={island.image} alt={island.title} className='h-48 w-full object-cover' />
+              <div className='p-5'>
+                <h3 className='mb-3 text-center text-lg font-bold uppercase tracking-wide text-wine'>{island.title}</h3>
+                <p className='text-center text-sm leading-relaxed text-black'>{island.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <div className='relative mb-10 mt-20 text-center'>
         <img src="/background/sobor.png" alt="" aria-hidden="true" className="absolute -left-12 top-1/2 -translate-y-1/2 h-80 opacity-[0.12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />

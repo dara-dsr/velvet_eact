@@ -7,7 +7,7 @@ import * as z from 'zod';
 
 const schema = z
   .object({
-    username: z.string().min(2, 'Имя должно быть не менее 2 символов').max(30, 'Имя должно быть не более 30 символов'),
+    login: z.string().min(2, 'Логин должен быть не менее 2 символов').max(30, 'Логин должен быть не более 30 символов'),
     email: z.string().email(),
     password: z.string().min(8),
     password_repeat: z.string()
@@ -46,11 +46,11 @@ function Register() {
 
         <div className='mb-4'>
           <input
-            {...register('username', { required: true })}
-            placeholder='Имя'
+            {...register('login', { required: true })}
+            placeholder='Логин'
             className='w-full rounded-full border px-5 py-3'
           />
-          {errors.username && <p className='text-sm text-red-300'>{errors.username.message}</p>}
+          {errors.login && <p className='text-sm text-red-300'>{errors.login.message}</p>}
         </div>
 
         <div className='mb-4'>

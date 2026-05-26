@@ -48,7 +48,11 @@ function Header() {
             onClick={() => go('/profile')}
             className='flex items-center gap-2 transition hover:text-[#b0164f]'
           >
-            <img src={userIcon} alt='profile' className='h-7 w-7 object-contain' />
+            {user?.avatar ? (
+              <img src={user.avatar} alt='profile' className='h-7 w-7 rounded-full object-cover' />
+            ) : (
+              <img src={userIcon} alt='profile' className='h-7 w-7 object-contain' />
+            )}
             <span className='font-medium'>{user?.username}</span>
           </button>
         ) : (
@@ -85,7 +89,11 @@ function Header() {
               onClick={() => go('/profile')}
               className='flex items-center gap-2 font-medium text-[#b0164f]'
             >
-              <img src={userIcon} alt='profile' className='h-6 w-6 object-contain' />
+              {user?.avatar ? (
+                <img src={user.avatar} alt='profile' className='h-6 w-6 rounded-full object-cover' />
+              ) : (
+                <img src={userIcon} alt='profile' className='h-6 w-6 object-contain' />
+              )}
               {user?.username}
             </button>
           ) : (

@@ -8,7 +8,7 @@ import api from '../api/api';
 import useAuthStore from '../store/useAuthStore';
 
 const schema = z.object({
-  username: z.string(),
+  login: z.string(),
   password: z.string()
 });
 
@@ -48,11 +48,11 @@ function Login() {
 
         <div className='mb-4'>
           <input
-            {...register('username', { required: true })}
+            {...register('login', { required: true })}
             placeholder='Логин'
             className='mb-4 w-full rounded-full border px-5 py-3'
           />
-          {errors.username && <p className='text-sm text-red-300'>{errors.username.message}</p>}
+          {errors.login && <p className='text-sm text-red-300'>{errors.login.message}</p>}
         </div>
 
         <div className='mb-4'>

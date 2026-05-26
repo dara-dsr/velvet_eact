@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
-from .models import Tour, Application
-from .serializers import TourSerializer, ApplicationSerializer, RegisterSerializer
+from .models import Tour, Application, UserProfile
+from .serializers import TourSerializer, ApplicationSerializer, RegisterSerializer, ChangePasswordSerializer, CustomTokenObtainPairSerializer
 
 
 class TourListView(generics.ListAPIView):
@@ -66,8 +67,56 @@ class MeView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
+        user = request.user
+        profile = getattr(user, 'profile', None)
         return Response({
-            "username": request.user.username,
-            "email": request.user.email,
+            "username": user.username,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "phone": profile.phone if profile else "",
+            "avatar": request.build_absolute_uri(profile.avatar.url) if profile and profile.avatar else None,
         })
-# Create your views here.
+
+    def patch(self, request):
+        user = request.user
+        user.first_name = request.data.get('first_name', user.first_name)
+        user.last_name = request.data.get('last_name', user.last_name)
+        user.save()
+
+        profile, _ = UserProfile.objects.get_or_create(user=user)
+        profile.phone = request.data.get('phone', profile.phone)
+
+        if request.data.get('remove_avatar') == 'true':
+            if profile.avatar:
+                profile.avatar.delete(save=False)
+            profile.avatar = None
+        elif request.FILES.get('avatar'):
+            profile.avatar = request.FILES['avatar']
+
+        profile.save()
+
+        return Response({
+            "username": user.username,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "phone": profile.phone,
+            "avatar": request.build_absolute_uri(profile.avatar.url) if profile.avatar else None,
+        })
+
+
+class ChangePasswordView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ChangePasswordSerializer
+
+    def post(self, request):
+        serializer = ChangePasswordSerializer(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        request.user.set_password(serializer.validated_data['new_password'])
+        request.user.save()
+        return Response({"detail": "Пароль успешно изменён"})
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer

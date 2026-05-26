@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import instagram from '../media/img/Instagram.png';
-import logo from '../media/img/logo.png';
-import telegram from '../media/img/Telegram.png';
-import whatsapp from '../media/img/WhatsApp.png';
+const logo = '/icons/logo.png';
+const telegram = '/icons/Telegram.png';
+const whatsapp = '/icons/WhatsApp.png';
+const instagram = '/icons/Instagram.png';
 
 function Footer() {
   const navigate = useNavigate();

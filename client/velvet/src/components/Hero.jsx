@@ -4,7 +4,7 @@ function Hero() {
       <div
         className='flex h-[620px] flex-col items-center justify-center rounded-2xl bg-cover bg-center text-center text-white shadow-lg'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.15)), url("./images/header.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.15)), url("/photos/header.jpg")`
         }}
       >
         <h1 className='text-6xl font-bold drop-shadow-[0_2px_10px_#900035] md:text-9xl'>Velvet East</h1>

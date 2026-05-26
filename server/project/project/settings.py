@@ -79,6 +79,7 @@ FRONTEND_URL = "https://velvet-eact-frontend.onrender.com"
 CORS_ALLOWED_ORIGINS = [
     "https://velvet-eact-frontend.onrender.com",
     "http://127.0.0.1:3000",
+    "http://localhost:3000",
 ]
 
 if FRONTEND_URL and FRONTEND_URL not in CORS_ALLOWED_ORIGINS:

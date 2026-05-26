@@ -10,7 +10,7 @@ import Tours from '../components/Tours'
 const reviews = [
   {
     id: 1,
-    image: './reviews_avatar/review_1.jpg',
+    image: '/avatars/review_1.jpg',
     name: 'Павел К.',
     tour: 'Тур «Сакура в Японии»',
     text: 'Это была лучшая поездка в моей жизни. Организация на высоком уровне.',
@@ -18,7 +18,7 @@ const reviews = [
   },
   {
     id: 2,
-    image: './reviews_avatar/review_2.jpg',
+    image: '/avatars/review_2.jpg',
     name: 'Мария В.',
     tour: 'Тур «Неоновый Токио»',
     text: 'Очень насыщенная программа и внимательные менеджеры.',
@@ -26,7 +26,7 @@ const reviews = [
   },
   {
     id: 3,
-    image: './reviews_avatar/review_3.jpg',
+    image: '/avatars/review_3.jpg',
     name: 'Алиса И.',
     tour: 'Тур «Япония Премиум»',
     text: 'Понравились отели, экскурсии и сопровождение.',
@@ -36,27 +36,27 @@ const reviews = [
 
 const benefits = [
   {
-    icon: './images/Map.png',
+    icon: '/icons/Map.png',
     title: 'Авторские маршруты',
     text: 'по главным городам Японии'
   },
   {
-    icon: './images/Hotel.png',
+    icon: '/icons/Hotel.png',
     title: 'Комфортные отели',
     text: 'и удобная логистика'
   },
   {
-    icon: './images/Support.png',
+    icon: '/icons/Support.png',
     title: 'Сопровождение',
     text: 'на всех этапах путешествия'
   },
   {
-    icon: './images/Guide.png',
+    icon: '/icons/Guide.png',
     title: 'Экскурсии',
     text: 'с русскоязычными гидами'
   },
   {
-    icon: './images/Calendar.png',
+    icon: '/icons/Calendar.png',
     title: 'Возможность',
     text: 'индивидуальной программы'
   }
@@ -87,7 +87,7 @@ function Home() {
           </p>
         </div>
 
-        <img src='./images/japan.jpg' alt='Японская улица' className='rounded-md shadow-md' />
+        <img src='/photos/japan.jpg' alt='Японская улица' className='rounded-md shadow-md' />
       </section>
 
       <section className='py-8'>
@@ -114,9 +114,9 @@ function Home() {
             </a>
           </div>
           <div className='grid h-full grid-cols-3'>
-            <img src='./images/fact_1.jpg' alt='Япония1' className='h-72 w-full object-cover' />
-            <img src='./images/fact_2.jpg' alt='Япония2' className='h-72 w-full object-cover' />
-            <img src='./images/fact_3.jpg' alt='Япония3' className='h-72 w-full object-cover' />
+            <img src='/photos/fact_1.jpg' alt='Япония1' className='h-72 w-full object-cover' />
+            <img src='/photos/fact_2.jpg' alt='Япония2' className='h-72 w-full object-cover' />
+            <img src='/photos/fact_3.jpg' alt='Япония3' className='h-72 w-full object-cover' />
           </div>
         </div>
       </section>
@@ -140,7 +140,7 @@ function Home() {
       <section
         className='mb-16 rounded-2xl bg-cover bg-center py-10 text-white'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("./images/zayvka.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.jpg")`
         }}
       >
         <ContactForm />

@@ -1,29 +1,19 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import useAuthStore from '../store/useAuthStore';
 
-import logo from '../media/img/logo.png';
-import search from '../media/img/Search.png';
-import user from '../media/img/User Male.png';
+const logo = '/icons/logo.png';
+const userIcon = '/icons/User Male.png';
 
 function Header() {
   const [open, setOpen] = useState(false);
-
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated, user } = useAuthStore();
 
-  const customNavigation = path => {
-    const token = localStorage.getItem('access');
-
-    // защищённые страницы
-    const protectedRoutes = ['/profile'];
-
-    if (protectedRoutes.includes(path) && !token) {
-      navigate('/register');
-    } else {
-      navigate(path);
-    }
-
+  const go = path => {
+    navigate(path);
     setOpen(false);
   };
 
@@ -32,33 +22,51 @@ function Header() {
 
   return (
     <div className='relative mx-auto flex max-w-7xl items-center justify-between px-6 py-4'>
-      <button onClick={() => customNavigation('/')} className='flex items-center gap-3 font-bold'>
+      <button onClick={() => go('/')} className='flex items-center gap-3 font-bold'>
         <img src={logo} alt='Velvet East' className='h-12 w-12 object-contain' />
         <span className='hidden text-lg text-black sm:block'>Velvet East</span>
       </button>
 
       <div className='hidden items-center gap-10 text-lg md:flex'>
-        <button onClick={() => customNavigation('/')} className={navClass('/')}>
+        <button onClick={() => go('/')} className={navClass('/')}>
           Главная
         </button>
-        <button onClick={() => customNavigation('/about')} className={navClass('/about')}>
+        <button onClick={() => go('/about')} className={navClass('/about')}>
           О Японии
         </button>
-        <button onClick={() => customNavigation('/tours')} className={navClass('/tours')}>
+        <button onClick={() => go('/tours')} className={navClass('/tours')}>
           Туры
         </button>
-        <button onClick={() => customNavigation('/contacts')} className={navClass('/contacts')}>
+        <button onClick={() => go('/contacts')} className={navClass('/contacts')}>
           Контакты
         </button>
       </div>
 
-      <div className='hidden items-center gap-5 md:flex'>
-        <button className='transition hover:scale-110'>
-          <img src={search} alt='search' className='h-6 w-6 object-contain' />
-        </button>
-        <button onClick={() => customNavigation('/profile')} className='transition hover:scale-110'>
-          <img src={user} alt='profile' className='h-7 w-7 object-contain' />
-        </button>
+      <div className='hidden items-center gap-4 md:flex'>
+        {isAuthenticated ? (
+          <button
+            onClick={() => go('/profile')}
+            className='flex items-center gap-2 transition hover:text-[#b0164f]'
+          >
+            <img src={userIcon} alt='profile' className='h-7 w-7 object-contain' />
+            <span className='font-medium'>{user?.username}</span>
+          </button>
+        ) : (
+          <>
+            <button
+              onClick={() => go('/login')}
+              className='rounded-full border border-[#b0164f] px-5 py-2 text-[#b0164f] transition hover:bg-[#b0164f] hover:text-white'
+            >
+              Войти
+            </button>
+            <button
+              onClick={() => go('/register')}
+              className='rounded-full bg-[#b0164f] px-5 py-2 text-white transition hover:bg-[#900035]'
+            >
+              Регистрация
+            </button>
+          </>
+        )}
       </div>
 
       <button className='md:hidden' onClick={() => setOpen(!open)}>
@@ -67,18 +75,29 @@ function Header() {
 
       {open && (
         <div className='absolute left-0 top-20 z-50 flex w-full flex-col items-center gap-6 bg-white py-6 shadow-lg md:hidden'>
-          <button onClick={() => customNavigation('/')}>Главная</button>
-          <button onClick={() => customNavigation('/tours')}>Туры</button>
-          <button onClick={() => customNavigation('/about')}>О Японии</button>
-          <button onClick={() => customNavigation('/contacts')}>Контакты</button>
-          <button onClick={() => customNavigation('/profile')}>Личный кабинет</button>
+          <button onClick={() => go('/')}>Главная</button>
+          <button onClick={() => go('/tours')}>Туры</button>
+          <button onClick={() => go('/about')}>О Японии</button>
+          <button onClick={() => go('/contacts')}>Контакты</button>
 
-          <button onClick={() => customNavigation('/register')} className='rounded-full border px-5 py-2'>
-            Регистрация
-          </button>
-          <button onClick={() => customNavigation('/login')} className='rounded-full bg-[#b0164f] px-5 py-2 text-white'>
-            Вход
-          </button>
+          {isAuthenticated ? (
+            <button
+              onClick={() => go('/profile')}
+              className='flex items-center gap-2 font-medium text-[#b0164f]'
+            >
+              <img src={userIcon} alt='profile' className='h-6 w-6 object-contain' />
+              {user?.username}
+            </button>
+          ) : (
+            <>
+              <button onClick={() => go('/register')} className='rounded-full border px-5 py-2'>
+                Регистрация
+              </button>
+              <button onClick={() => go('/login')} className='rounded-full bg-[#b0164f] px-5 py-2 text-white'>
+                Вход
+              </button>
+            </>
+          )}
         </div>
       )}
     </div>

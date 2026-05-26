@@ -4,21 +4,14 @@ import { toast } from 'sonner';
 import api from '../api/api';
 import Container from '../components/Container';
 import { Skeleton } from '../components/Skeleton';
+import useAuthStore from '../store/useAuthStore';
 
 function Profile() {
   const navigate = useNavigate();
-
-  const [user, setUser] = useState(null);
+  const { user, clearUser } = useAuthStore();
   const [applications, setApplications] = useState(null);
 
   useEffect(() => {
-    api
-      .get('/me/')
-      .then(res => setUser(res.data))
-      .catch(() => {
-        navigate('/login');
-        toast.error('Ошибка получения данных с сервера');
-      });
     api
       .get('/profile/')
       .then(res => setApplications(res.data))
@@ -26,11 +19,10 @@ function Profile() {
         setApplications([]);
         toast.error('Ошибка получения данных с сервера');
       });
-  }, [navigate]);
+  }, []);
 
   function logout() {
-    localStorage.removeItem('access');
-    localStorage.removeItem('refresh');
+    clearUser();
     navigate('/');
   }
 
@@ -40,7 +32,7 @@ function Profile() {
 
       <div className='mb-10 rounded-3xl p-8 shadow-md'>
         <p className='flex items-center gap-2 text-lg'>
-          Имя пользователя: {!user ? <Skeleton className='h-5 w-20' /> : <b>{user.username}</b>}
+          Логин: {!user ? <Skeleton className='h-5 w-20' /> : <b>@{user.username}</b>}
         </p>
 
         <p className='flex items-center gap-2 text-lg'>
@@ -67,18 +59,14 @@ function Profile() {
               <p>
                 Тур: <b>{app.tour_title || 'Не выбран'}</b>
               </p>
-
               <p>Телефон: {app.phone}</p>
-
               <p>Email: {app.email}</p>
-
               <p>
                 Статус: <span className='font-bold text-wine'>{app.status}</span>
               </p>
             </div>
           ))
         )}
-
         {applications && applications.length === 0 && <p>Вы пока не оставляли заявки.</p>}
       </div>
     </Container>

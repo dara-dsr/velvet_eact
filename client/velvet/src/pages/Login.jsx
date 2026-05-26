@@ -1,18 +1,20 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { useNavigate, Link } from 'react-router-dom';
-import api from '../api/api';
 import * as z from 'zod';
+import api from '../api/api';
+import useAuthStore from '../store/useAuthStore';
 
-const schema = z
-  .object({
-    username: z.string(),
-    password: z.string()
-  });
+const schema = z.object({
+  username: z.string(),
+  password: z.string()
+});
 
 function Login() {
   const navigate = useNavigate();
+  const initAuth = useAuthStore(state => state.initAuth);
 
   const {
     register,
@@ -21,13 +23,13 @@ function Login() {
   } = useForm({ resolver: zodResolver(schema) });
 
   async function onSubmit(data) {
-    console.log('pk')
     try {
       const res = await api.post('/login/', data);
 
-      localStorage.setItem('access', res.data.access);
-      localStorage.setItem('refresh', res.data.refresh);
+      Cookies.set('access', res.data.access, { expires: 1 });
+      Cookies.set('refresh', res.data.refresh, { expires: 7 });
 
+      await initAuth();
       navigate('/profile');
     } catch {
       toast.error('Неверный логин или пароль');
@@ -47,7 +49,7 @@ function Login() {
         <div className='mb-4'>
           <input
             {...register('username', { required: true })}
-            placeholder='Имя пользователя'
+            placeholder='Логин'
             className='mb-4 w-full rounded-full border px-5 py-3'
           />
           {errors.username && <p className='text-sm text-red-300'>{errors.username.message}</p>}

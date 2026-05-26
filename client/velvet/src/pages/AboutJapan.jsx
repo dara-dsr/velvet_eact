@@ -8,7 +8,7 @@ function AboutJapan() {
       <div
         className='flex h-96 items-center justify-center rounded-2xl bg-cover bg-center text-white'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url("./images/fon_japan.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url("/photos/fon_japan.jpg")`
         }}
       >
         <h1 className='text-7xl font-bold drop-shadow-[0_2px_10px_#900035]'>О Японии</h1>
@@ -114,7 +114,7 @@ function AboutJapan() {
         </div>
 
         <div className='overflow-hidden rounded-md'>
-          <img src='./images/train.jpg' alt='Японский поезд' className='h-80 w-full object-cover' />
+          <img src='/photos/train.jpg' alt='Японский поезд' className='h-80 w-full object-cover' />
         </div>
       </div>
 
@@ -133,7 +133,7 @@ function AboutJapan() {
 
       <div className='mt-20 grid items-center gap-8 md:grid-cols-2'>
         <div className='overflow-hidden rounded-md'>
-          <img src='./images/food.jpg' alt='Японская кухня' className='h-80 w-full object-cover' />
+          <img src='/photos/food.jpg' alt='Японская кухня' className='h-80 w-full object-cover' />
         </div>
 
         <div>

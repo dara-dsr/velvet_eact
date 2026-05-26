@@ -1,9 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import * as z from 'zod';
 import api from '../api/api';
+import useAuthStore from '../store/useAuthStore';
 
 const schema = z.object({
   name: z.string().min(2, 'Имя должно быть не менее 2 символов').max(30, 'Имя должно быть не более 30 символов'),
@@ -21,21 +23,52 @@ const schema = z.object({
 });
 
 function ContactForm({ tourId, className }) {
+  const { isAuthenticated } = useAuthStore();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({ resolver: zodResolver(schema) });
 
+  const containerClass =
+    'mx-auto max-w-5xl rounded-3xl border border-white/30 bg-white/20 p-6 shadow-[0_4px_30px_rgba(144,0,53,0.35)] backdrop-blur-md' +
+    (className || '');
+
+  if (!isAuthenticated) {
+    return (
+      <div className={containerClass}>
+        <div className='flex flex-col items-center justify-center py-12 text-center'>
+          <h3 className='text-4xl font-bold drop-shadow-[0_2px_10px_#900035]'>Оставьте заявку</h3>
+          <p className='mt-4 max-w-md text-lg leading-relaxed'>
+            Для подачи заявки необходимо войти в аккаунт или зарегистрироваться.
+          </p>
+          <div className='mt-8 flex flex-wrap justify-center gap-4'>
+            <Link
+              to='/login'
+              className='rounded-full border border-white px-8 py-3 font-medium transition hover:bg-white/20'
+            >
+              Войти
+            </Link>
+            <Link
+              to='/register'
+              className='rounded-full bg-wine px-8 py-3 font-bold text-white shadow-[0_4px_20px_rgba(144,0,53,0.45)] transition hover:bg-wineDark'
+            >
+              Зарегистрироваться
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   async function onSubmit(data) {
     try {
-      if (!localStorage.getItem('access')) throw new Error('Missing authorization headers');
-
       await api.post('/applications/', {
         ...data,
         tour: tourId || null
       });
-
+      reset();
       toast.success('Заявка успешно отправлена');
     } catch {
       toast.error('Ошибка отправки заявки');
@@ -43,16 +76,10 @@ function ContactForm({ tourId, className }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={
-        'mx-auto max-w-5xl rounded-3xl border border-white/30 bg-white/20 p-6 shadow-[0_4px_30px_rgba(144,0,53,0.35)] backdrop-blur-md' +
-        className
-      }
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className={containerClass}>
       <div className='grid items-center gap-10 md:grid-cols-2'>
         <div>
-          <h3 className='text-5xl font-bold drop-shadow-[0_2px_10px_#900035]'> Оставьте заявку</h3>
+          <h3 className='text-5xl font-bold drop-shadow-[0_2px_10px_#900035]'>Оставьте заявку</h3>
           <p className='mt-4 text-lg leading-relaxed'>Подберём идеальный тур в Японию и ответим на все вопросы.</p>
           <div className='mt-10 grid grid-cols-3 gap-4 text-center'>
             <div>

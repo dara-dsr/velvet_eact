@@ -8,7 +8,7 @@ function Contacts() {
       <div
         className='flex h-[340px] flex-col items-center justify-center rounded-3xl bg-cover bg-center px-6 text-center text-white shadow-lg'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url("./images/contacts.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url("/photos/contacts.jpg")`
         }}
       >
         <h1 className='text-5xl font-bold drop-shadow-[0_2px_10px_#900035] md:text-6xl'>Контакты</h1>
@@ -119,7 +119,7 @@ function Contacts() {
       <section
         className='my-16 rounded-2xl bg-cover bg-center py-10 text-white'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("./images/zayvka.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.jpg")`
         }}
       >
         <ContactForm />

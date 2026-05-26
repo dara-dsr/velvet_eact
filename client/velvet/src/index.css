@@ -1,3 +1,31 @@
+/* Swiper customisation for PlacesSlider */
+.places-swiper .swiper-button-next,
+.places-swiper .swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  background: #900035;
+  border-radius: 50%;
+  color: #fff;
+  top: 45%;
+}
+.places-swiper .swiper-button-next::after,
+.places-swiper .swiper-button-prev::after {
+  font-size: 14px;
+  font-weight: 700;
+}
+.places-swiper .swiper-button-next:hover,
+.places-swiper .swiper-button-prev:hover {
+  background: #6e0027;
+}
+.places-swiper .swiper-pagination-bullet {
+  background: #900035;
+  opacity: 0.4;
+}
+.places-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #900035;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;

@@ -7,6 +7,7 @@ import ReviewCard from '../components/ReviewCard';
 import Card from '../components/Card';
 import Container from '../components/Container';
 import Tours from '../components/Tours';
+import PlacesSlider from '../components/PlacesSlider';
 import api from '../api/api';
 
 const DEFAULT_REVIEWS = [
@@ -143,6 +144,8 @@ function Home() {
         <h2 className='section-title'>Популярные туры</h2>
         <Tours isDemo />
       </section>
+
+      <PlacesSlider />
 
       <section className='relative pb-14' aria-label="Отзывы клиентов">
         <img src="/background/vetv-sakura.png" alt="" aria-hidden="true" className="absolute -top-10 -right-14 w-[520px] opacity-25 pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />

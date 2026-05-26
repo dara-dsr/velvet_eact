@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { HelmetProvider } from 'react-helmet-async';
 import './input.css';
@@ -19,6 +19,12 @@ import Register from './pages/Register';
 import TourDetails from './pages/TourDetails';
 import ToursPage from './pages/Tours';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 function App() {
   const initAuth = useAuthStore(state => state.initAuth);
   const isInitialized = useAuthStore(state => state.isInitialized);
@@ -30,6 +36,7 @@ function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
 
         {isInitialized ? (

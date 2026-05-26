@@ -19,9 +19,6 @@ const places = [
 function PlacesSlider() {
   return (
     <section className='places-slider-section relative overflow-hidden rounded-2xl py-14' aria-label="Популярные места">
-      <img src="/background/vetv.png" alt="" aria-hidden="true" className="absolute -bottom-16 -left-16 w-[420px] opacity-20 pointer-events-none select-none" style={{ mixBlendMode: 'multiply' }} />
-      <img src="/background/vetv-sakura.png" alt="" aria-hidden="true" className="absolute -top-10 -right-10 w-[380px] opacity-20 pointer-events-none select-none" style={{ mixBlendMode: 'multiply' }} />
-
       <h2 className='section-title'>Популярные места</h2>
 
       <Swiper

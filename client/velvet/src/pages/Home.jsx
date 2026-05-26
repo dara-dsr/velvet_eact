@@ -86,7 +86,7 @@ function Home() {
       <Hero />
 
       <section className='relative grid items-center gap-14 py-16 md:grid-cols-2' aria-label="О нас">
-        <img src="/background/vetv.png" alt="" aria-hidden="true" className="absolute -bottom-20 -left-20 w-[480px] opacity-25 pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
+        <img src="/background/vetv.png" alt="" aria-hidden="true" className="absolute md:-bottom-[150px] bottom-[600px] md:-left-[100px] left-[90px] md:w-[1400px] w-[3000px] opacity-45 pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <div>
           <p className='mb-2 text-sm text-wine'>Velvet East</p>
 
@@ -148,7 +148,7 @@ function Home() {
       <PlacesSlider />
 
       <section className='relative pb-14' aria-label="Отзывы клиентов">
-        <img src="/background/vetv-sakura.png" alt="" aria-hidden="true" className="absolute -top-10 -right-14 w-[520px] opacity-25 pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
+        <img src="/background/vetv-sakura.png" alt="" aria-hidden="true" className="absolute md:-top-40 -top-40 md:-right-1 -right-1 md:w-[1620px] w-[1620px] md:opacity-70 opacity-90 pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <h2 className='section-title'>Отзывы</h2>
         <div className='grid gap-8 md:grid-cols-3'>
           {reviews.map(item => (
@@ -164,7 +164,7 @@ function Home() {
           backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.webp")`
         }}
       >
-        <img src="/background/sakura.png" alt="" aria-hidden="true" className="absolute -bottom-6 -left-10 w-[520px] opacity-50 pointer-events-none select-none" style={{mixBlendMode:'screen'}} />
+        <img src="/background/sakura.png" alt="" aria-hidden="true" className="absolute -bottom-[60px] -left-10 w-[1220px] opacity-100 pointer-events-none select-none" style={{mixBlendMode:'screen'}} />
         <ContactForm />
       </section>
     </Container>

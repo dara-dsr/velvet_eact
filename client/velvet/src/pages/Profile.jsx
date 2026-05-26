@@ -204,7 +204,7 @@ function Profile() {
 
   return (
     <Container As='section' className='relative min-h-[80vh] px-6 py-14'>
-      <img src="/background/karp.png" alt="" aria-hidden="true" className="absolute -top-6 -right-10 h-[360px] opacity-[0.1] pointer-events-none select-none" style={{mixBlendMode:'luminosity'}} />
+      <img src="/background/karp.png" alt="" aria-hidden="true" className="absolute top-[60px] -right-10 md:h-[560px] h-[260px] opacity-[20] pointer-events-none select-none" style={{mixBlendMode:'luminosity'}} />
       <Helmet>
         <title>Личный кабинет — Velvet East</title>
         <meta name="robots" content="noindex" />

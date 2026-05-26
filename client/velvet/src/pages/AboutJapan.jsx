@@ -20,7 +20,7 @@ function AboutJapan() {
       </div>
 
       <div className='relative grid items-center gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr]'>
-        <img src="/background/xram.png" alt="" aria-hidden="true" className="absolute -right-14 top-0 h-[420px] opacity-[0.12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
+        <img src="/background/xram.png" alt="" aria-hidden="true" className="absolute -right-14 top-0 md:h-[420px] h-[320px] opacity-[12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <div>
           <p className='mb-3 font-bold text-wineDark'>Velvet East</p>
 
@@ -112,7 +112,7 @@ function AboutJapan() {
       </section>
 
       <div className='relative mb-10 mt-20 text-center'>
-        <img src="/background/sobor.png" alt="" aria-hidden="true" className="absolute -left-12 top-1/2 -translate-y-1/2 h-80 opacity-[0.12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
+        <img src="/background/sobor.png" alt="" aria-hidden="true" className="absolute md:-left-12 -left-20 top-[250px] -translate-y-1/2 md:h-61 h-[800px] opacity-[12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <h2 className='section-title'>Главные города</h2>
         <div className='mx-auto mt-4 h-1 w-24 rounded-full bg-wine'></div>
 
@@ -171,7 +171,8 @@ function AboutJapan() {
         </div>
       </div>
 
-      <div className='mb-10 mt-20 text-center'>
+      <div className='relative mb-10 mt-20 text-center'>
+        <img src="/background/vetv.png" alt="" aria-hidden="true" className="absolute md:-bottom-[200px] bottom-[600px] md:left-[5px] left-[90px] md:w-[1400px] w-[3000px] opacity-45 pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <h2 className='section-title'>Культура и впечатления</h2>
         <div className='mx-auto mt-4 h-1 w-24 rounded-full bg-wine'></div>
       </div>
@@ -224,7 +225,7 @@ function AboutJapan() {
         ))}
       </div>
 
-      <div className='mt-20 rounded-3xl bg-wine p-8 text-center text-white'>
+      <div className=' mt-20 rounded-3xl bg-wine p-8 text-center text-white'>
         <h2 className='mb-4 text-3xl font-bold'>Почему стоит поехать?</h2>
         <p className='mx-auto max-w-3xl text-lg leading-relaxed'>
           Япония подходит для романтических поездок, семейного отдыха, гастрономических туров, культурных маршрутов,

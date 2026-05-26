@@ -23,7 +23,7 @@ function Header() {
   return (
     <div className='relative mx-auto flex max-w-7xl items-center justify-between px-6 py-4'>
       <button onClick={() => go('/')} className='flex items-center gap-3 font-bold'>
-        <img src={logo} alt='Velvet East' className='h-12 w-12 object-contain' />
+        <img loading="lazy" src={logo} alt='Velvet East' className='h-12 w-12 object-contain' />
         <span className='hidden text-lg text-black sm:block'>Velvet East</span>
       </button>
 
@@ -49,9 +49,9 @@ function Header() {
             className='flex items-center gap-2 transition hover:text-[#b0164f]'
           >
             {user?.avatar ? (
-              <img src={user.avatar} alt='profile' className='h-7 w-7 rounded-full object-cover' />
+              <img loading="lazy" src={user.avatar} alt='profile' className='h-7 w-7 rounded-full object-cover' />
             ) : (
-              <img src={userIcon} alt='profile' className='h-7 w-7 object-contain' />
+              <img loading="lazy" src={userIcon} alt='profile' className='h-7 w-7 object-contain' />
             )}
             <span className='font-medium'>{user?.username}</span>
           </button>
@@ -90,9 +90,9 @@ function Header() {
               className='flex items-center gap-2 font-medium text-[#b0164f]'
             >
               {user?.avatar ? (
-                <img src={user.avatar} alt='profile' className='h-6 w-6 rounded-full object-cover' />
+                <img loading="lazy" src={user.avatar} alt='profile' className='h-6 w-6 rounded-full object-cover' />
               ) : (
-                <img src={userIcon} alt='profile' className='h-6 w-6 object-contain' />
+                <img loading="lazy" src={userIcon} alt='profile' className='h-6 w-6 object-contain' />
               )}
               {user?.username}
             </button>

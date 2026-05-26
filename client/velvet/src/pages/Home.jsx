@@ -12,7 +12,7 @@ const DEFAULT_REVIEWS = [
     id: 'd1',
     image: '/avatars/review_1.jpg',
     name: 'Павел К.',
-    tour: 'Тур «Сакура в Японии»',
+    tour: 'Сакура в Японии',
     text: 'Это была лучшая поездка в моей жизни. Организация на высоком уровне.',
     date: 'Апрель 2026'
   },
@@ -20,7 +20,7 @@ const DEFAULT_REVIEWS = [
     id: 'd2',
     image: '/avatars/review_2.jpg',
     name: 'Мария В.',
-    tour: 'Тур «Неоновый Токио»',
+    tour: 'Неоновый Токио',
     text: 'Очень насыщенная программа и внимательные менеджеры.',
     date: 'Март 2026'
   },
@@ -28,7 +28,7 @@ const DEFAULT_REVIEWS = [
     id: 'd3',
     image: '/avatars/review_3.jpg',
     name: 'Алиса И.',
-    tour: 'Тур «Япония Премиум»',
+    tour: 'Япония Премиум',
     text: 'Понравились отели, экскурсии и сопровождение.',
     date: 'Февраль 2026'
   }
@@ -97,7 +97,7 @@ function Home() {
           </p>
         </div>
 
-        <img src='/photos/japan.jpg' alt='Японская улица' className='rounded-md shadow-md' />
+        <img loading="lazy" src='/photos/japan.jpg' alt='Японская улица' className='rounded-md shadow-md' />
       </section>
 
       <section className='py-8'>
@@ -124,9 +124,9 @@ function Home() {
             </a>
           </div>
           <div className='grid h-full grid-cols-3'>
-            <img src='/photos/fact_1.jpg' alt='Япония1' className='h-72 w-full object-cover' />
-            <img src='/photos/fact_2.jpg' alt='Япония2' className='h-72 w-full object-cover' />
-            <img src='/photos/fact_3.jpg' alt='Япония3' className='h-72 w-full object-cover' />
+            <img loading="lazy" src='/photos/fact_1.jpg' alt='Япония1' className='h-72 w-full object-cover' />
+            <img loading="lazy" src='/photos/fact_2.jpg' alt='Япония2' className='h-72 w-full object-cover' />
+            <img loading="lazy" src='/photos/fact_3.jpg' alt='Япония3' className='h-72 w-full object-cover' />
           </div>
         </div>
       </section>

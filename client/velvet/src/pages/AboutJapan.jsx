@@ -76,7 +76,7 @@ function AboutJapan() {
             className={`grid items-center gap-8 overflow-hidden rounded-3xl bg-white md:grid-cols-2`}
           >
             <div className={`${index % 2 !== 0 ? 'md:order-2' : ''}`}>
-              <img src={city.image} alt={city.title} className='h-[340px] w-full object-cover' />
+              <img loading="lazy" src={city.image} alt={city.title} className='h-[340px] w-full object-cover' />
             </div>
 
             <div className='p-10'>
@@ -114,7 +114,7 @@ function AboutJapan() {
         </div>
 
         <div className='overflow-hidden rounded-md'>
-          <img src='/photos/train.jpg' alt='Японский поезд' className='h-80 w-full object-cover' />
+          <img loading="lazy" src='/photos/train.jpg' alt='Японский поезд' className='h-80 w-full object-cover' />
         </div>
       </div>
 
@@ -133,7 +133,7 @@ function AboutJapan() {
 
       <div className='mt-20 grid items-center gap-8 md:grid-cols-2'>
         <div className='overflow-hidden rounded-md'>
-          <img src='/photos/food.jpg' alt='Японская кухня' className='h-80 w-full object-cover' />
+          <img loading="lazy" src='/photos/food.jpg' alt='Японская кухня' className='h-80 w-full object-cover' />
         </div>
 
         <div>

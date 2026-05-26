@@ -9,7 +9,7 @@ function TourCard({ tour }) {
   return (
     <div className='flex flex-col overflow-hidden rounded-2xl shadow-md transition hover:scale-105'>
       <div className='relative h-52 shrink-0'>
-        <img src={imgSrc} alt={tour.title} className='h-full w-full object-cover' />
+        <img loading="lazy" src={imgSrc} alt={tour.title} className='h-full w-full object-cover' />
         <div className='absolute inset-0 bg-gradient-to-t from-black/40 to-transparent' />
         <div className='absolute left-3 right-3 top-3 flex items-center justify-between gap-2'>
           <span className='rounded-full bg-white px-3 py-1 text-sm font-medium'>{tour.title}</span>

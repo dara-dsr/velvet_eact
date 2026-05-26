@@ -15,7 +15,7 @@ function Footer() {
     <footer className='bg-wine pb-10 text-white'>
       <div className='mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 py-10 md:flex-row'>
         <button onClick={() => customNavigation('/')} className='flex items-center gap-3'>
-          <img src={logo} alt='Velvet East' className='h-14 w-14 object-contain' />
+          <img loading="lazy" src={logo} alt='Velvet East' className='h-14 w-14 object-contain' />
           <div className='text-left'>
             <h2 className='text-2xl font-bold'>Velvet East</h2>
             <p className='text-sm font-normal'>Турагентство</p>
@@ -48,13 +48,13 @@ function Footer() {
         <div className='hidden md:block flex-1' />
         <div className='flex gap-4'>
           <a href='*' target='_blank' rel='noreferrer' className='transition hover:text-pink-200'>
-            <img src={telegram} alt='Telegram' className='h-8 w-8 object-contain' />
+            <img loading="lazy" src={telegram} alt='Telegram' className='h-8 w-8 object-contain' />
           </a>
           <a href='*' target='_blank' rel='noreferrer' className='transition hover:text-pink-200'>
-            <img src={whatsapp} alt='WhatsApp' className='h-8 w-8 object-contain' />
+            <img loading="lazy" src={whatsapp} alt='WhatsApp' className='h-8 w-8 object-contain' />
           </a>
           <a href='*' target='_blank' rel='noreferrer' className='transition hover:text-pink-200'>
-            <img src={instagram} alt='Instagram' className='h-8 w-8 object-contain' />
+            <img loading="lazy" src={instagram} alt='Instagram' className='h-8 w-8 object-contain' />
           </a>
         </div>
         <div className='flex flex-1 justify-end'>

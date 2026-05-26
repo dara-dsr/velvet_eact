@@ -60,3 +60,22 @@ class Application(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.status}"
+
+
+class Review(models.Model):
+    STATUS_CHOICES = [
+        ("На модерации", "На модерации"),
+        ("Опубликован", "Опубликован"),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='reviews')
+    text = models.TextField()
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default="На модерации")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'tour')
+
+    def __str__(self):
+        return f"Review by {self.user.username} on {self.tour.title}"

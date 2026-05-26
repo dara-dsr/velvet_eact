@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.utils.html import format_html
-from .models import Tour, Application, UserProfile
+from .models import Tour, Application, UserProfile, Review
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -79,3 +79,27 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display = ("name", "email", "phone", "tour", "status", "created_at")
     list_filter = ("status", "created_at")
     search_fields = ("name", "email", "phone")
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ("get_author", "tour", "status", "created_at", "get_short_text")
+    list_filter = ("status", "created_at", "tour")
+    search_fields = ("user__username", "user__first_name", "user__last_name", "tour__title", "text")
+    list_editable = ("status",)
+    ordering = ("-created_at",)
+    readonly_fields = ("user", "tour", "text", "created_at")
+
+    @admin.display(description="Автор")
+    def get_author(self, obj):
+        first = obj.user.first_name
+        last = obj.user.last_name
+        if first and last:
+            return f"{first} {last[0]}. (@{obj.user.username})"
+        if first:
+            return f"{first} (@{obj.user.username})"
+        return f"@{obj.user.username}"
+
+    @admin.display(description="Текст")
+    def get_short_text(self, obj):
+        return obj.text[:80] + "…" if len(obj.text) > 80 else obj.text

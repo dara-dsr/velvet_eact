@@ -12,8 +12,11 @@ from app.views import (
     MeView,
     ProfileView,
     RegisterView,
+    ReviewCreateView,
+    ReviewListView,
     TourDetailView,
     TourListView,
+    TourReviewListView,
 )
 
 urlpatterns = [
@@ -29,6 +32,9 @@ urlpatterns = [
     path("api/register/", RegisterView.as_view(), name="register"),
     path("api/me/", MeView.as_view(), name="me"),
     path("api/me/password/", ChangePasswordView.as_view(), name="change-password"),
+    path("api/reviews/", ReviewListView.as_view(), name="review-list"),
+    path("api/reviews/create/", ReviewCreateView.as_view(), name="review-create"),
+    path("api/tours/<int:pk>/reviews/", TourReviewListView.as_view(), name="tour-review-list"),
 ]
 
 if settings.DEBUG:

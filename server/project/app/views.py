@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
-from .models import Tour, Application, UserProfile
-from .serializers import TourSerializer, ApplicationSerializer, RegisterSerializer, ChangePasswordSerializer, CustomTokenObtainPairSerializer
+from .models import Tour, Application, UserProfile, Review
+from .serializers import TourSerializer, ApplicationSerializer, RegisterSerializer, ChangePasswordSerializer, CustomTokenObtainPairSerializer, ReviewSerializer
 
 
 class TourListView(generics.ListAPIView):
@@ -120,3 +121,31 @@ class ChangePasswordView(generics.GenericAPIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+class ReviewListView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [permissions.AllowAny]
+    queryset = Review.objects.filter(status="Опубликован").order_by("-created_at")
+
+
+class ReviewCreateView(generics.CreateAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        tour = serializer.validated_data["tour"]
+        has_confirmed = Application.objects.filter(
+            user=self.request.user, tour=tour, status="Подтверждена"
+        ).exists()
+        if not has_confirmed:
+            raise PermissionDenied("У вас нет подтверждённой заявки на этот тур")
+        serializer.save(user=self.request.user)
+
+
+class TourReviewListView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        return Review.objects.filter(tour_id=self.kwargs["pk"], status="Опубликован").order_by("-created_at")

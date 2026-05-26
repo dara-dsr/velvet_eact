@@ -8,10 +8,60 @@ import useAuthStore from '../store/useAuthStore';
 
 const EMPTY_PASSWORD_FORM = { old_password: '', new_password: '', new_password_repeat: '' };
 
+function ReviewForm({ tourId, tourTitle, onDone }) {
+  const [text, setText] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  async function submit(e) {
+    e.preventDefault();
+    if (!text.trim()) return;
+    setSaving(true);
+    try {
+      await api.post('/reviews/create/', { tour: tourId, text });
+      toast.success('Отзыв успешно добавлен');
+      onDone();
+    } catch (err) {
+      const detail = err.response?.data?.detail;
+      if (err.response?.status === 400) {
+        toast.error('Вы уже оставляли отзыв на этот тур');
+      } else {
+        toast.error(detail || 'Ошибка при добавлении отзыва');
+      }
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <form onSubmit={submit} className='mt-3 space-y-2'>
+      <textarea
+        value={text}
+        onChange={e => setText(e.target.value)}
+        placeholder={`Ваш отзыв о туре «${tourTitle}»`}
+        rows={3}
+        className='w-full rounded-2xl border px-4 py-2 text-sm outline-none focus:border-wine resize-none'
+      />
+      <div className='flex gap-2'>
+        <button type='submit' disabled={saving || !text.trim()} className='btn-primary text-sm'>
+          {saving ? 'Отправка...' : 'Отправить отзыв'}
+        </button>
+        <button
+          type='button'
+          onClick={onDone}
+          className='rounded-full border px-5 py-2 text-sm transition hover:bg-gray-100'
+        >
+          Отмена
+        </button>
+      </div>
+    </form>
+  );
+}
+
 function Profile() {
   const navigate = useNavigate();
   const { user, clearUser, setUser } = useAuthStore();
   const [applications, setApplications] = useState(null);
+  const [reviewOpen, setReviewOpen] = useState(null);
 
   const [editMode, setEditMode] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -26,7 +76,7 @@ function Profile() {
   const [passwordForm, setPasswordForm] = useState(EMPTY_PASSWORD_FORM);
   const [passwordErrors, setPasswordErrors] = useState({});
 
-  useEffect(() => {
+  function fetchApplications() {
     api
       .get('/profile/')
       .then(res => setApplications(res.data))
@@ -34,6 +84,10 @@ function Profile() {
         setApplications([]);
         toast.error('Ошибка получения данных с сервера');
       });
+  }
+
+  useEffect(() => {
+    fetchApplications();
   }, []);
 
   useEffect(() => {
@@ -136,6 +190,13 @@ function Profile() {
     } finally {
       setSavingPassword(false);
     }
+  }
+
+  function handleReviewDone(appId) {
+    setReviewOpen(null);
+    setApplications(prev =>
+      prev.map(a => (a.id === appId ? { ...a, has_review: true } : a))
+    );
   }
 
   const inputClass = 'w-full rounded-full border px-5 py-2.5 text-sm outline-none focus:border-wine';
@@ -374,6 +435,37 @@ function Profile() {
               <p>
                 Статус: <span className='font-bold text-wine'>{app.status}</span>
               </p>
+
+              {app.status === 'Подтверждена' && app.tour && (
+                <div className='mt-3'>
+                  {app.has_review ? (
+                    <span
+                      className={`inline-block rounded-full px-4 py-1.5 text-sm ${
+                        app.review_status === 'Опубликован'
+                          ? 'bg-green-50 text-green-700'
+                          : 'bg-yellow-50 text-yellow-700'
+                      }`}
+                    >
+                      {app.review_status === 'Опубликован'
+                        ? 'Отзыв опубликован'
+                        : 'Отзыв на модерации'}
+                    </span>
+                  ) : reviewOpen === app.id ? (
+                    <ReviewForm
+                      tourId={app.tour}
+                      tourTitle={app.tour_title}
+                      onDone={() => handleReviewDone(app.id)}
+                    />
+                  ) : (
+                    <button
+                      onClick={() => setReviewOpen(app.id)}
+                      className='rounded-full border border-wine px-5 py-1.5 text-sm text-wine transition hover:bg-wine hover:text-white'
+                    >
+                      Оставить отзыв
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           ))
         )}

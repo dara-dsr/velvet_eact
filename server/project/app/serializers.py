@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import Tour, Application, UserProfile
+from .models import Tour, Application, UserProfile, Review
 
 
 class TourSerializer(serializers.ModelSerializer):
@@ -12,6 +12,8 @@ class TourSerializer(serializers.ModelSerializer):
 
 class ApplicationSerializer(serializers.ModelSerializer):
     tour_title = serializers.CharField(source="tour.title", read_only=True)
+    has_review = serializers.SerializerMethodField()
+    review_status = serializers.SerializerMethodField()
 
     class Meta:
         model = Application
@@ -26,8 +28,48 @@ class ApplicationSerializer(serializers.ModelSerializer):
             "comment",
             "status",
             "created_at",
+            "has_review",
+            "review_status",
         ]
         read_only_fields = ["user", "status", "created_at"]
+
+    def get_has_review(self, obj):
+        if not obj.user or not obj.tour or obj.status != "Подтверждена":
+            return False
+        return Review.objects.filter(user=obj.user, tour=obj.tour).exists()
+
+    def get_review_status(self, obj):
+        if not obj.user or not obj.tour:
+            return None
+        review = Review.objects.filter(user=obj.user, tour=obj.tour).first()
+        return review.status if review else None
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    author_name = serializers.SerializerMethodField()
+    author_avatar = serializers.SerializerMethodField()
+    tour_title = serializers.CharField(source="tour.title", read_only=True)
+
+    class Meta:
+        model = Review
+        fields = ["id", "tour", "tour_title", "text", "author_name", "author_avatar", "created_at"]
+        read_only_fields = ["created_at"]
+
+    def get_author_name(self, obj):
+        first = obj.user.first_name
+        last = obj.user.last_name
+        if not first:
+            return "Аноним"
+        if last:
+            return f"{first} {last[0]}."
+        return first
+
+    def get_author_avatar(self, obj):
+        request = self.context.get("request")
+        profile = getattr(obj.user, "profile", None)
+        if profile and profile.avatar:
+            return request.build_absolute_uri(profile.avatar.url) if request else profile.avatar.url
+        return None
 
 
 class RegisterSerializer(serializers.ModelSerializer):

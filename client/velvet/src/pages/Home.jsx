@@ -1,15 +1,15 @@
-
+import { useEffect, useState } from 'react';
 import ContactForm from '../components/ContactForm';
 import Hero from '../components/Hero';
 import ReviewCard from '../components/ReviewCard';
-
 import Card from '../components/Card';
 import Container from '../components/Container';
-import Tours from '../components/Tours'
+import Tours from '../components/Tours';
+import api from '../api/api';
 
-const reviews = [
+const DEFAULT_REVIEWS = [
   {
-    id: 1,
+    id: 'd1',
     image: '/avatars/review_1.jpg',
     name: 'Павел К.',
     tour: 'Тур «Сакура в Японии»',
@@ -17,7 +17,7 @@ const reviews = [
     date: 'Апрель 2026'
   },
   {
-    id: 2,
+    id: 'd2',
     image: '/avatars/review_2.jpg',
     name: 'Мария В.',
     tour: 'Тур «Неоновый Токио»',
@@ -25,7 +25,7 @@ const reviews = [
     date: 'Март 2026'
   },
   {
-    id: 3,
+    id: 'd3',
     image: '/avatars/review_3.jpg',
     name: 'Алиса И.',
     tour: 'Тур «Япония Премиум»',
@@ -34,35 +34,45 @@ const reviews = [
   }
 ];
 
+const MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  return `${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+}
+
 const benefits = [
-  {
-    icon: '/icons/Map.png',
-    title: 'Авторские маршруты',
-    text: 'по главным городам Японии'
-  },
-  {
-    icon: '/icons/Hotel.png',
-    title: 'Комфортные отели',
-    text: 'и удобная логистика'
-  },
-  {
-    icon: '/icons/Support.png',
-    title: 'Сопровождение',
-    text: 'на всех этапах путешествия'
-  },
-  {
-    icon: '/icons/Guide.png',
-    title: 'Экскурсии',
-    text: 'с русскоязычными гидами'
-  },
-  {
-    icon: '/icons/Calendar.png',
-    title: 'Возможность',
-    text: 'индивидуальной программы'
-  }
+  { icon: '/icons/Map.png', title: 'Авторские маршруты', text: 'по главным городам Японии' },
+  { icon: '/icons/Hotel.png', title: 'Комфортные отели', text: 'и удобная логистика' },
+  { icon: '/icons/Support.png', title: 'Сопровождение', text: 'на всех этапах путешествия' },
+  { icon: '/icons/Guide.png', title: 'Экскурсии', text: 'с русскоязычными гидами' },
+  { icon: '/icons/Calendar.png', title: 'Возможность', text: 'индивидуальной программы' }
 ];
 
 function Home() {
+  const [reviews, setReviews] = useState(DEFAULT_REVIEWS);
+
+  useEffect(() => {
+    api
+      .get('/reviews/')
+      .then(res => {
+        const apiReviews = res.data.slice(0, 3).map(r => ({
+          id: r.id,
+          image: r.author_avatar,
+          name: r.author_name,
+          tour: r.tour_title,
+          text: r.text,
+          date: formatDate(r.created_at)
+        }));
+        if (apiReviews.length < 3) {
+          setReviews([...apiReviews, ...DEFAULT_REVIEWS.slice(0, 3 - apiReviews.length)]);
+        } else {
+          setReviews(apiReviews);
+        }
+      })
+      .catch(() => setReviews(DEFAULT_REVIEWS));
+  }, []);
+
   return (
     <Container>
       <Hero />
@@ -123,16 +133,14 @@ function Home() {
 
       <section id='popular' className='py-14'>
         <h2 className='section-title'>Популярные туры</h2>
-
         <Tours isDemo />
       </section>
 
       <section className='py-14'>
         <h2 className='section-title'>Отзывы</h2>
-
         <div className='grid gap-8 md:grid-cols-3'>
           {reviews.map(item => (
-            <ReviewCard image={item.image} name={item.name} tour={item.tour} text={item.text} date={item.date} />
+            <ReviewCard key={item.id} image={item.image} name={item.name} tour={item.tour} text={item.text} date={item.date} />
           ))}
         </div>
       </section>

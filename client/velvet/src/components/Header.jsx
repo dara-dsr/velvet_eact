@@ -41,11 +41,11 @@ function Header() {
         <button onClick={() => customNavigation('/')} className={navClass('/')}>
           Главная
         </button>
-        <button onClick={() => customNavigation('/tours')} className={navClass('/tours')}>
-          Туры
-        </button>
         <button onClick={() => customNavigation('/about')} className={navClass('/about')}>
           О Японии
+        </button>
+        <button onClick={() => customNavigation('/tours')} className={navClass('/tours')}>
+          Туры
         </button>
         <button onClick={() => customNavigation('/contacts')} className={navClass('/contacts')}>
           Контакты

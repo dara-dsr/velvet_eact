@@ -26,11 +26,11 @@ function Footer() {
           <button onClick={() => customNavigation('/')} className='transition hover:text-pink-200'>
             Главная
           </button>
-          <button onClick={() => customNavigation('/tours')} className='transition hover:text-pink-200'>
-            Туры
-          </button>
           <button onClick={() => customNavigation('/about')} className='transition hover:text-pink-200'>
             О Японии
+          </button>
+          <button onClick={() => customNavigation('/tours')} className='transition hover:text-pink-200'>
+            Туры
           </button>
           <button onClick={() => customNavigation('/contacts')} className='transition hover:text-pink-200'>
             Контакты

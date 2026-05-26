@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import ContactForm from '../components/ContactForm';
 import Container from '../components/Container';
 import { Clock3, Mail, MapPin, MessageCircle, Phone, Plane, Send } from 'lucide-react';
@@ -5,10 +6,14 @@ import { Clock3, Mail, MapPin, MessageCircle, Phone, Plane, Send } from 'lucide-
 function Contacts() {
   return (
     <Container As='section'>
+      <Helmet>
+        <title>Контакты — Velvet East</title>
+        <meta name="description" content="Свяжитесь с турагентством Velvet East: телефон, email, адрес во Владивостоке. Бесплатная консультация по турам в Японию." />
+      </Helmet>
       <div
         className='flex h-[340px] flex-col items-center justify-center rounded-3xl bg-cover bg-center px-6 text-center text-white shadow-lg'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url("/photos/contacts.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url("/photos/contacts.webp")`
         }}
       >
         <h1 className='text-5xl font-bold drop-shadow-[0_2px_10px_#900035] md:text-6xl'>Контакты</h1>
@@ -119,7 +124,7 @@ function Contacts() {
       <section
         className='my-16 rounded-2xl bg-cover bg-center py-10 text-white'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.webp")`
         }}
       >
         <ContactForm />

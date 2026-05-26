@@ -1,6 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Velvet East — Туры в Японию",
+  "short_name": "Velvet East",
+  "description": "Турагентство, специализирующееся на турах в Японию",
+  "lang": "ru",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +20,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#b0164f",
   "background_color": "#ffffff"
 }

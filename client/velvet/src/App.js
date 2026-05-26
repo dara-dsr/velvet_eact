@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'sonner';
-import './App.css';
+import { HelmetProvider } from 'react-helmet-async';
 import './input.css';
 
 import Footer from './components/Footer';
@@ -28,7 +28,7 @@ function App() {
   }, [initAuth]);
 
   return (
-    <div>
+    <HelmetProvider>
       <BrowserRouter>
         <Header />
 
@@ -58,9 +58,9 @@ function App() {
         )}
 
         <Footer />
+        <Toaster />
       </BrowserRouter>
-      <Toaster />
-    </div>
+    </HelmetProvider>
   );
 }
 

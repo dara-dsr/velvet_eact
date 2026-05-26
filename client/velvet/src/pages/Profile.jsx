@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { toast } from 'sonner';
 import api from '../api/api';
 import Container from '../components/Container';
@@ -203,6 +204,11 @@ function Profile() {
 
   return (
     <Container As='section' className='min-h-[80vh] px-6 py-14'>
+      <Helmet>
+        <title>Личный кабинет — Velvet East</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
+
       <h1 className='mb-10 text-5xl font-bold'>Личный кабинет</h1>
 
       <div className='mb-10 rounded-3xl p-8 shadow-md'>

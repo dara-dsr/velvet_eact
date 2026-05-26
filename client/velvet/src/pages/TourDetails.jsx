@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import api from '../api/api';
 import ContactForm from '../components/ContactForm';
 import ReviewCard from '../components/ReviewCard';
@@ -33,7 +34,7 @@ function TourDetails() {
   }, [id]);
 
   if (!tour) {
-    return <p className='py-20 text-center'>Загрузка...</p>;
+    return <p className='py-20 text-center' role="status" aria-live="polite">Загрузка...</p>;
   }
 
   const visibleReviews = reviews.slice(0, visibleCount);
@@ -41,6 +42,11 @@ function TourDetails() {
 
   return (
     <section className='mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12'>
+      <Helmet>
+        <title>{tour.title} — Velvet East</title>
+        <meta name="description" content={`${tour.title}: ${tour.duration} дней, от ${Number(tour.price).toLocaleString()} ₽. ${tour.description?.slice(0, 120) ?? ''}`} />
+      </Helmet>
+
       <img
         src={tour.image}
         alt={tour.title}
@@ -132,7 +138,7 @@ function TourDetails() {
       <section
         className='my-10 rounded-2xl bg-cover bg-center py-8 text-white sm:my-16 sm:py-10'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/images/zayvka.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.webp")`
         }}
       >
         <ContactForm tourId={tour.id} />

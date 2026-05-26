@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import ContactForm from '../components/ContactForm';
 import Hero from '../components/Hero';
 import ReviewCard from '../components/ReviewCard';
@@ -10,7 +12,7 @@ import api from '../api/api';
 const DEFAULT_REVIEWS = [
   {
     id: 'd1',
-    image: '/avatars/review_1.jpg',
+    image: '/avatars/review_1.webp',
     name: 'Павел К.',
     tour: 'Сакура в Японии',
     text: 'Это была лучшая поездка в моей жизни. Организация на высоком уровне.',
@@ -18,7 +20,7 @@ const DEFAULT_REVIEWS = [
   },
   {
     id: 'd2',
-    image: '/avatars/review_2.jpg',
+    image: '/avatars/review_2.webp',
     name: 'Мария В.',
     tour: 'Неоновый Токио',
     text: 'Очень насыщенная программа и внимательные менеджеры.',
@@ -26,7 +28,7 @@ const DEFAULT_REVIEWS = [
   },
   {
     id: 'd3',
-    image: '/avatars/review_3.jpg',
+    image: '/avatars/review_3.webp',
     name: 'Алиса И.',
     tour: 'Япония Премиум',
     text: 'Понравились отели, экскурсии и сопровождение.',
@@ -42,11 +44,11 @@ function formatDate(dateStr) {
 }
 
 const benefits = [
-  { icon: '/icons/Map.png', title: 'Авторские маршруты', text: 'по главным городам Японии' },
-  { icon: '/icons/Hotel.png', title: 'Комфортные отели', text: 'и удобная логистика' },
-  { icon: '/icons/Support.png', title: 'Сопровождение', text: 'на всех этапах путешествия' },
-  { icon: '/icons/Guide.png', title: 'Экскурсии', text: 'с русскоязычными гидами' },
-  { icon: '/icons/Calendar.png', title: 'Возможность', text: 'индивидуальной программы' }
+  { icon: '/icons/Map.webp', title: 'Авторские маршруты', text: 'по главным городам Японии' },
+  { icon: '/icons/Hotel.webp', title: 'Комфортные отели', text: 'и удобная логистика' },
+  { icon: '/icons/Support.webp', title: 'Сопровождение', text: 'на всех этапах путешествия' },
+  { icon: '/icons/Guide.webp', title: 'Экскурсии', text: 'с русскоязычными гидами' },
+  { icon: '/icons/Calendar.webp', title: 'Возможность', text: 'индивидуальной программы' }
 ];
 
 function Home() {
@@ -75,15 +77,20 @@ function Home() {
 
   return (
     <Container>
+      <Helmet>
+        <title>Velvet East — Туры в Японию</title>
+        <meta name="description" content="Velvet East — авторские туры в Японию. Токио, Киото, Осака, Нара, Хоккайдо. Русскоязычные гиды, комфортные отели, индивидуальные программы." />
+      </Helmet>
+
       <Hero />
 
-      <section className='grid items-center gap-14 py-16 md:grid-cols-2'>
+      <section className='grid items-center gap-14 py-16 md:grid-cols-2' aria-label="О нас">
         <div>
           <p className='mb-2 text-sm text-wine'>Velvet East</p>
 
           <h2 className='mb-6 text-4xl'>
-            Япония - страна, <br />
-            <p className='text-wine'>которая удивляет с первого дня</p>
+            Япония — страна, <br />
+            <span className='text-wine'>которая удивляет с первого дня</span>
           </h2>
 
           <p className='mb-5 text-lg'>
@@ -97,19 +104,19 @@ function Home() {
           </p>
         </div>
 
-        <img loading="lazy" src='/photos/japan.jpg' alt='Японская улица' className='rounded-md shadow-md' />
+        <img loading="lazy" src='/photos/japan.webp' alt='Улица японского города' className='rounded-md shadow-md' />
       </section>
 
-      <section className='py-8'>
+      <section className='py-8' aria-label="Преимущества">
         <h2 className='section-title'>Что вас ждёт</h2>
         <div className='grid grid-cols-2 gap-6 md:grid-cols-5'>
-          {benefits.map((item, index) => (
-            <Card key={index} {...item} />
+          {benefits.map(item => (
+            <Card key={item.title} {...item} />
           ))}
         </div>
       </section>
 
-      <section className='py-10'>
+      <section className='py-10' aria-label="Об агентстве">
         <div className='grid overflow-hidden rounded-2xl bg-pink-50 shadow-md md:grid-cols-2'>
           <div className='p-8'>
             <p className='text-lg'>
@@ -119,24 +126,24 @@ function Home() {
 
             <p className='mt-5 text-wine'>Откройте для себя Японию вместе с нами.</p>
 
-            <a href='/tours' className='btn-primary mt-6 inline-block'>
+            <Link to='/tours' className='btn-primary mt-6 inline-block'>
               Подобрать тур
-            </a>
+            </Link>
           </div>
-          <div className='grid h-full grid-cols-3'>
-            <img loading="lazy" src='/photos/fact_1.jpg' alt='Япония1' className='h-72 w-full object-cover' />
-            <img loading="lazy" src='/photos/fact_2.jpg' alt='Япония2' className='h-72 w-full object-cover' />
-            <img loading="lazy" src='/photos/fact_3.jpg' alt='Япония3' className='h-72 w-full object-cover' />
+          <div className='grid h-full grid-cols-3' aria-hidden="true">
+            <img loading="lazy" src='/photos/fact_1.webp' alt='' className='h-72 w-full object-cover' />
+            <img loading="lazy" src='/photos/fact_2.webp' alt='' className='h-72 w-full object-cover' />
+            <img loading="lazy" src='/photos/fact_3.webp' alt='' className='h-72 w-full object-cover' />
           </div>
         </div>
       </section>
 
-      <section id='popular' className='py-14'>
+      <section id='popular' className='py-14' aria-label="Популярные туры">
         <h2 className='section-title'>Популярные туры</h2>
         <Tours isDemo />
       </section>
 
-      <section className='pb-14'>
+      <section className='pb-14' aria-label="Отзывы клиентов">
         <h2 className='section-title'>Отзывы</h2>
         <div className='grid gap-8 md:grid-cols-3'>
           {reviews.map(item => (
@@ -147,8 +154,9 @@ function Home() {
 
       <section
         className='mb-16 rounded-2xl bg-cover bg-center py-10 text-white'
+        aria-label="Форма заявки"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.webp")`
         }}
       >
         <ContactForm />

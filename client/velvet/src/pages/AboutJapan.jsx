@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Container from '../components/Container';
 import { facts, cities, seasons, culture, factsList, tips } from '../data/about';
 
@@ -5,10 +6,14 @@ import { facts, cities, seasons, culture, factsList, tips } from '../data/about'
 function AboutJapan() {
   return (
     <Container As='section' className='py-14'>
+      <Helmet>
+        <title>О Японии — Velvet East</title>
+        <meta name="description" content="Всё о Японии: главные города Токио, Киото, Осака, Нара, Хоккайдо. Сезоны, культура, японская кухня, полезные советы туристу." />
+      </Helmet>
       <div
         className='flex h-96 items-center justify-center rounded-2xl bg-cover bg-center text-white'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url("/photos/fon_japan.jpg")`
+          backgroundImage: `linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url("/photos/fon_japan.webp")`
         }}
       >
         <h1 className='text-7xl font-bold drop-shadow-[0_2px_10px_#900035]'>О Японии</h1>
@@ -114,7 +119,7 @@ function AboutJapan() {
         </div>
 
         <div className='overflow-hidden rounded-md'>
-          <img loading="lazy" src='/photos/train.jpg' alt='Японский поезд' className='h-80 w-full object-cover' />
+          <img loading="lazy" src='/photos/train.webp' alt='Японский поезд' className='h-80 w-full object-cover' />
         </div>
       </div>
 
@@ -133,7 +138,7 @@ function AboutJapan() {
 
       <div className='mt-20 grid items-center gap-8 md:grid-cols-2'>
         <div className='overflow-hidden rounded-md'>
-          <img loading="lazy" src='/photos/food.jpg' alt='Японская кухня' className='h-80 w-full object-cover' />
+          <img loading="lazy" src='/photos/food.webp' alt='Японская кухня' className='h-80 w-full object-cover' />
         </div>
 
         <div>

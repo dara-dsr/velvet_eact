@@ -37,11 +37,12 @@ function Register() {
 
   return (
     <section
-      className='flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6'
+      className='relative flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6'
       style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url('/photos/zayvka.webp')"
       }}
     >
+      <img src="/background/mech.png" alt="" aria-hidden="true" className="absolute left-0 top-1/2 -translate-y-1/2 h-[500px] opacity-[0.25] pointer-events-none select-none" style={{mixBlendMode:'screen'}} />
       <Helmet>
         <title>Регистрация — Velvet East</title>
         <meta name="description" content="Создайте аккаунт Velvet East и подбирайте туры в Японию." />

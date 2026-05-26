@@ -9,7 +9,8 @@ function NotFound() {
         <meta name="robots" content="noindex" />
       </Helmet>
 
-      <main className='flex min-h-[70vh] flex-col items-center justify-center px-5 text-center'>
+      <main className='relative flex min-h-[70vh] flex-col items-center justify-center px-5 text-center'>
+        <img src="/background/fish.png" alt="" aria-hidden="true" className="absolute right-0 bottom-0 h-[500px] opacity-[0.45] pointer-events-none select-none" style={{mixBlendMode:'screen'}} />
         <h1 className='mb-5 text-8xl font-black text-[#a80035]'>404</h1>
 
         <h2 className='mb-4 text-4xl font-bold'>Страница не найдена</h2>

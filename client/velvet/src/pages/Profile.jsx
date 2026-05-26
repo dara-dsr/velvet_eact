@@ -203,7 +203,8 @@ function Profile() {
   const inputClass = 'w-full rounded-full border px-5 py-2.5 text-sm outline-none focus:border-wine';
 
   return (
-    <Container As='section' className='min-h-[80vh] px-6 py-14'>
+    <Container As='section' className='relative min-h-[80vh] px-6 py-14'>
+      <img src="/background/karp.png" alt="" aria-hidden="true" className="absolute -top-6 -right-10 h-[360px] opacity-[0.1] pointer-events-none select-none" style={{mixBlendMode:'luminosity'}} />
       <Helmet>
         <title>Личный кабинет — Velvet East</title>
         <meta name="robots" content="noindex" />

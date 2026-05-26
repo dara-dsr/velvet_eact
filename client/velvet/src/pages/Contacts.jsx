@@ -25,7 +25,8 @@ function Contacts() {
       </div>
 
       <div className='mt-16 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]'>
-        <div className='space-y-6'>
+        <div className='relative space-y-6'>
+          <img src="/background/cat.png" alt="" aria-hidden="true" className="absolute -bottom-16 -right-6 h-72 opacity-[0.1] pointer-events-none select-none" />
           <div className='rounded-3xl bg-white p-8 shadow-[0_4px_20px_rgba(144,0,53,0.25)]'>
             <h2 className='mb-8 text-3xl font-bold text-wine'>Связаться с нами</h2>
 

@@ -39,11 +39,12 @@ function Login() {
 
   return (
     <section
-      className='flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6'
+      className='relative flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6'
       style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url('/photos/zayvka.webp')"
       }}
     >
+      <img src="/background/vorota.png" alt="" aria-hidden="true" className="absolute right-0 top-1/2 -translate-y-1/2 h-[400px] opacity-[0.22] pointer-events-none select-none" />
       <Helmet>
         <title>Вход — Velvet East</title>
         <meta name="description" content="Войдите в аккаунт Velvet East, чтобы подать заявку на тур в Японию." />

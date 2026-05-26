@@ -4,7 +4,8 @@ import Tours from '../components/Tours';
 
 export default function ToursPage() {
   return (
-    <Container className='py-14 min-h-[80vh]'>
+    <Container className='relative py-14 min-h-[80vh]'>
+      <img src="/background/drakon.png" alt="" aria-hidden="true" className="absolute -right-10 top-16 h-[700px] opacity-[0.07] pointer-events-none select-none" />
       <Helmet>
         <title>Туры в Японию — Velvet East</title>
         <meta name="description" content="Выберите тур в Японию: фильтрация по сезону, городу, длительности и бюджету. Весна, лето, осень, зима — туры для любого путешественника." />

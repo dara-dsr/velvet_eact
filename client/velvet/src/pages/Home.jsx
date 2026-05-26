@@ -84,7 +84,8 @@ function Home() {
 
       <Hero />
 
-      <section className='grid items-center gap-14 py-16 md:grid-cols-2' aria-label="О нас">
+      <section className='relative grid items-center gap-14 py-16 md:grid-cols-2' aria-label="О нас">
+        <img src="/background/vetv.png" alt="" aria-hidden="true" className="absolute -bottom-20 -left-20 w-[480px] opacity-25 pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <div>
           <p className='mb-2 text-sm text-wine'>Velvet East</p>
 
@@ -143,7 +144,8 @@ function Home() {
         <Tours isDemo />
       </section>
 
-      <section className='pb-14' aria-label="Отзывы клиентов">
+      <section className='relative pb-14' aria-label="Отзывы клиентов">
+        <img src="/background/vetv-sakura.png" alt="" aria-hidden="true" className="absolute -top-10 -right-14 w-[520px] opacity-25 pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <h2 className='section-title'>Отзывы</h2>
         <div className='grid gap-8 md:grid-cols-3'>
           {reviews.map(item => (
@@ -153,12 +155,13 @@ function Home() {
       </section>
 
       <section
-        className='mb-16 rounded-2xl bg-cover bg-center py-10 text-white'
+        className='relative mb-16 rounded-2xl bg-cover bg-center py-10 text-white'
         aria-label="Форма заявки"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), url("/photos/zayvka.webp")`
         }}
       >
+        <img src="/background/sakura.png" alt="" aria-hidden="true" className="absolute -bottom-6 -left-10 w-[520px] opacity-50 pointer-events-none select-none" style={{mixBlendMode:'screen'}} />
         <ContactForm />
       </section>
     </Container>

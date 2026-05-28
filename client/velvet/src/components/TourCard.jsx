@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-const BACKEND_URL = 'https://velvet-eact-backend.onrender.com';
+// const BACKEND_URL = 'https://velvet-eact-backend.onrender.com';
 
 function TourCard({ tour }) {
-  const imgSrc = tour.image?.startsWith('http') ? tour.image : `${BACKEND_URL}${tour.image}`;
+  const imgSrc = `/tours/${tour.photo}.jpg`;
   const citiesList = Array.isArray(tour.cities) ? tour.cities : [];
 
   return (

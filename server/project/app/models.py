@@ -34,6 +34,7 @@ class Tour(models.Model):
     duration = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to="tours/")
+    photo = models.CharField(max_length=200, blank=True)
     program = models.TextField(blank=True)
     included = models.TextField(blank=True)
 

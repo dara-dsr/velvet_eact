@@ -49,7 +49,7 @@ function TourDetails() {
       </Helmet>
 
       <img
-        src={tour.image}
+        src={`/tours/${tour.photo}.jpg`}
         alt={tour.title}
         className='h-48 w-full rounded-2xl object-cover shadow-md sm:h-72 md:h-[420px] md:rounded-3xl'
       />

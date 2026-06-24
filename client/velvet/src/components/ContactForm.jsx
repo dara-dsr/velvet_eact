@@ -84,9 +84,9 @@ function ContactForm({ tourId, className }) {
     >
       <div className='grid items-center gap-10 md:grid-cols-2'>
         <div>
-          <h3 className='text-5xl font-bold drop-shadow-[0_2px_10px_#900035]'>Оставьте заявку</h3>
-          <p className='mt-4 text-lg leading-relaxed'>Подберём идеальный тур в Японию и ответим на все вопросы.</p>
-          <div className='mt-10 grid grid-cols-3 gap-4 text-center' aria-hidden="true">
+          <h3 className='text-3xl font-bold drop-shadow-[0_2px_10px_#900035] sm:text-4xl md:text-5xl'>Оставьте заявку</h3>
+          <p className='mt-4 text-base leading-relaxed sm:text-lg'>Подберём идеальный тур в Японию и ответим на все вопросы.</p>
+          <div className='mt-8 grid grid-cols-1 gap-4 text-center sm:mt-10 sm:grid-cols-3' aria-hidden="true">
             <div><p className='text-sm'>Бесплатная консультация</p></div>
             <div><p className='text-sm'>Подбор тура за 15 минут</p></div>
             <div><p className='text-sm'>Поддержка 24/7</p></div>
@@ -163,7 +163,12 @@ function ContactForm({ tourId, className }) {
                 aria-invalid={!!errors.agreement}
                 aria-describedby={errors.agreement ? 'cf-agreement-error' : undefined}
               />
-              <span>Я согласен на обработку персональных данных</span>
+              <span>
+                Я согласен на{' '}
+                <Link to='/privacy' target='_blank' className='underline hover:text-pink-200'>
+                  обработку персональных данных
+                </Link>
+              </span>
             </label>
             <div className='h-4'>
               {errors.agreement && <p id="cf-agreement-error" className='text-sm text-red-300' role="alert">Подтвердите согласие на обработку данных</p>}

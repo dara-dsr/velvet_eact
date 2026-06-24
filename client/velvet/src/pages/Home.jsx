@@ -133,9 +133,9 @@ function Home() {
             </Link>
           </div>
           <div className='grid h-full grid-cols-3' aria-hidden="true">
-            <img loading="lazy" src='/photos/fact_1.webp' alt='' className='h-72 w-full object-cover' />
-            <img loading="lazy" src='/photos/fact_2.webp' alt='' className='h-72 w-full object-cover' />
-            <img loading="lazy" src='/photos/fact_3.webp' alt='' className='h-72 w-full object-cover' />
+            <img loading="lazy" src='/photos/fact_1.webp' alt='' className='h-40 w-full object-cover sm:h-56 md:h-72' />
+            <img loading="lazy" src='/photos/fact_2.webp' alt='' className='h-40 w-full object-cover sm:h-56 md:h-72' />
+            <img loading="lazy" src='/photos/fact_3.webp' alt='' className='h-40 w-full object-cover sm:h-56 md:h-72' />
           </div>
         </div>
       </section>
@@ -172,3 +172,4 @@ function Home() {
 }
 
 export default Home;
+

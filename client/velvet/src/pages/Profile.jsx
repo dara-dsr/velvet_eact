@@ -204,13 +204,13 @@ function Profile() {
 
   return (
     <Container As='section' className='relative min-h-[80vh] px-6 py-14'>
-      <img src="/background/karp.png" alt="" aria-hidden="true" className="absolute top-[60px] -right-10 md:h-[560px] h-[260px] opacity-[20] pointer-events-none select-none" style={{mixBlendMode:'luminosity'}} />
+      <img src="/background/karp.png" alt="" aria-hidden="true" className="absolute top-[60px] -right-10 md:h-[560px] h-[260px] opacity-[0.2] pointer-events-none select-none" style={{mixBlendMode:'luminosity'}} />
       <Helmet>
         <title>Личный кабинет — Velvet East</title>
         <meta name="robots" content="noindex" />
       </Helmet>
 
-      <h1 className='mb-10 text-5xl font-bold'>Личный кабинет</h1>
+      <h1 className='mb-10 text-3xl font-bold sm:text-4xl md:text-5xl'>Личный кабинет</h1>
 
       <div className='mb-10 rounded-3xl p-8 shadow-md'>
         <div className='mb-6 flex items-center gap-5'>

@@ -11,7 +11,8 @@ const schema = z
     login: z.string().min(2, 'Логин должен быть не менее 2 символов').max(30, 'Логин должен быть не более 30 символов'),
     email: z.string().email(),
     password: z.string().min(8),
-    password_repeat: z.string()
+    password_repeat: z.string(),
+    agreement: z.literal(true)
   })
   .refine(data => data.password === data.password_repeat, {
     path: ['password_repeat']
@@ -28,7 +29,8 @@ function Register() {
 
   async function onSubmit(data) {
     try {
-      await api.post('/register/', data);
+      const { agreement, ...payload } = data;
+      await api.post('/register/', payload);
       navigate('/login');
     } catch {
       toast.error('Ошибка регистрации');
@@ -114,6 +116,29 @@ function Register() {
             className='w-full rounded-full border px-5 py-3'
           />
           {errors.password_repeat && <p id="reg-repeat-error" className='mt-1 text-sm text-red-500' role="alert">Пароли не совпадают</p>}
+        </div>
+
+        <div className='mb-4'>
+          <label className='flex items-start gap-3 text-sm text-gray-600'>
+            <input
+              {...register('agreement', { required: true })}
+              type='checkbox'
+              className='mt-1 shrink-0'
+              aria-invalid={!!errors.agreement}
+              aria-describedby={errors.agreement ? 'reg-agreement-error' : undefined}
+            />
+            <span>
+              Я согласен на{' '}
+              <Link to='/privacy' target='_blank' className='font-medium text-wine underline'>
+                обработку персональных данных
+              </Link>
+            </span>
+          </label>
+          {errors.agreement && (
+            <p id='reg-agreement-error' className='mt-1 text-sm text-red-500' role='alert'>
+              Подтвердите согласие на обработку данных
+            </p>
+          )}
         </div>
 
         <button type='submit' disabled={isSubmitting} className='btn-primary w-full' aria-busy={isSubmitting}>

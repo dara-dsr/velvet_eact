@@ -36,7 +36,7 @@ function Footer() {
           </ul>
         </nav>
 
-        <address className="text-right text-sm not-italic">
+        <address className="text-center md:text-right text-sm not-italic">
           <p>
             <a href="tel:+74232785491" className="transition hover:text-pink-200">
               +7 (423) 278-54-91
@@ -87,7 +87,10 @@ function Footer() {
           </a>
         </div>
 
-        <div className="flex flex-1 justify-end">
+        <div className="flex flex-1 flex-col items-center gap-1 md:items-end">
+          <Link to="/privacy" className="text-sm underline transition hover:text-pink-200">
+            Обработка персональных данных
+          </Link>
           <p className="text-sm">© 2026 Velvet East. Все права защищены.</p>
         </div>
       </div>
@@ -96,3 +99,4 @@ function Footer() {
 }
 
 export default Footer;
+

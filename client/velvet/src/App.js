@@ -4,6 +4,7 @@ import { Toaster } from 'sonner';
 import { HelmetProvider } from 'react-helmet-async';
 import './input.css';
 
+import ConsentBanner from './components/ConsentBanner';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -14,6 +15,7 @@ import Contacts from './pages/Contacts';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
+import Privacy from './pages/Privacy';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
 import TourDetails from './pages/TourDetails';
@@ -21,7 +23,9 @@ import ToursPage from './pages/Tours';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return null;
 }
 
@@ -46,6 +50,7 @@ function App() {
             <Route path='/tours/:id' element={<TourDetails />} />
             <Route path='/about' element={<AboutJapan />} />
             <Route path='/contacts' element={<Contacts />} />
+            <Route path='/privacy' element={<Privacy />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route
@@ -66,6 +71,7 @@ function App() {
 
         <Footer />
         <Toaster />
+        <ConsentBanner />
       </BrowserRouter>
     </HelmetProvider>
   );

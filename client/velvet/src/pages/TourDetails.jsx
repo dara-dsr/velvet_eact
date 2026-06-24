@@ -42,7 +42,7 @@ function TourDetails() {
 
   return (
     <section className='relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12'>
-      <img src="/background/samyrai.png" alt="" aria-hidden="true" className="absolute md:bottom-[600px] bottom-[800px] -right-20 md:h-[600px] h-[400px] opacity-[10] pointer-events-none select-none" />
+      <img src="/background/samyrai.png" alt="" aria-hidden="true" className="absolute md:bottom-[600px] bottom-[800px] -right-20 md:h-[600px] h-[400px] opacity-[0.1] pointer-events-none select-none" />
       <Helmet>
         <title>{tour.title} — Velvet East</title>
         <meta name="description" content={`${tour.title}: ${tour.duration} дней, от ${Number(tour.price).toLocaleString()} ₽. ${tour.description?.slice(0, 120) ?? ''}`} />
@@ -77,7 +77,7 @@ function TourDetails() {
       )}
 
       <div className='relative mt-8 sm:mt-10'>
-        <img src="/background/hram.png" alt="" aria-hidden="true" className="absolute -right-70 -top-6 h-[700px] opacity-[10] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
+        <img src="/background/hram.png" alt="" aria-hidden="true" className="absolute -right-70 -top-6 h-[700px] opacity-[0.1] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <h2 className='mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl'>Описание тура</h2>
         <p className='text-base leading-relaxed sm:text-lg'>{tour.description}</p>
       </div>

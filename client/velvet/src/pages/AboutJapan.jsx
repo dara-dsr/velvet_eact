@@ -11,16 +11,16 @@ function AboutJapan() {
         <meta name="description" content="Всё о Японии: главные города Токио, Киото, Осака, Нара, Хоккайдо. Сезоны, культура, японская кухня, полезные советы туристу." />
       </Helmet>
       <div
-        className='flex h-96 items-center justify-center rounded-2xl bg-cover bg-center text-white'
+        className='flex h-72 items-center justify-center rounded-2xl bg-cover bg-center px-4 text-center text-white sm:h-96'
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), url("/photos/fon_japan.webp")`
         }}
       >
-        <h1 className='text-7xl font-bold drop-shadow-[0_2px_10px_#900035]'>О Японии</h1>
+        <h1 className='text-5xl font-bold drop-shadow-[0_2px_10px_#900035] sm:text-6xl md:text-7xl'>О Японии</h1>
       </div>
 
       <div className='relative grid items-center gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr]'>
-        <img src="/background/xram.png" alt="" aria-hidden="true" className="absolute -right-14 top-0 md:h-[420px] h-[320px] opacity-[12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
+        <img src="/background/xram.png" alt="" aria-hidden="true" className="absolute -right-14 top-0 md:h-[420px] h-[320px] opacity-[0.12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <div>
           <p className='mb-3 font-bold text-wineDark'>Velvet East</p>
 
@@ -112,7 +112,7 @@ function AboutJapan() {
       </section>
 
       <div className='relative mb-10 mt-20 text-center'>
-        <img src="/background/sobor.png" alt="" aria-hidden="true" className="absolute md:-left-12 -left-20 top-[250px] -translate-y-1/2 md:h-61 h-[800px] opacity-[12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
+        <img src="/background/sobor.png" alt="" aria-hidden="true" className="absolute md:-left-12 -left-20 top-[250px] -translate-y-1/2 md:h-61 h-[800px] opacity-[0.12] pointer-events-none select-none" style={{mixBlendMode:'multiply'}} />
         <h2 className='section-title'>Главные города</h2>
         <div className='mx-auto mt-4 h-1 w-24 rounded-full bg-wine'></div>
 

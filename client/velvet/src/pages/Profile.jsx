@@ -265,12 +265,12 @@ function Profile() {
               </>
             )}
           </div>
-          <div>
-            <p className='flex items-center gap-2 text-lg'>
-              Логин: {!user ? <Skeleton className='h-5 w-20' /> : <b>{user.username}</b>}
+          <div className='min-w-0'>
+            <p className='text-base sm:text-lg'>
+              Логин: {!user ? <Skeleton className='inline-block h-5 w-20 align-middle' /> : <b>{user.username}</b>}
             </p>
-            <p className='flex items-center gap-2 text-lg'>
-              Email: {!user ? <Skeleton className='h-5 w-20' /> : <b>{user.email}</b>}
+            <p className='text-base break-all sm:text-lg'>
+              Email: {!user ? <Skeleton className='inline-block h-5 w-20 align-middle' /> : <b>{user.email}</b>}
             </p>
           </div>
         </div>
@@ -438,7 +438,7 @@ function Profile() {
                 Тур: <b>{app.tour_title || 'Не выбран'}</b>
               </p>
               <p>Телефон: {app.phone}</p>
-              <p>Email: {app.email}</p>
+              <p className='break-all'>Email: {app.email}</p>
               <p>
                 Статус: <span className='font-bold text-wine'>{app.status}</span>
               </p>

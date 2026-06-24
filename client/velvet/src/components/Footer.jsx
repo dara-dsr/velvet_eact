@@ -25,7 +25,7 @@ function Footer() {
         </Link>
 
         <nav aria-label="Навигация в подвале">
-          <ul className="flex gap-8 font-bold flex-col md:flex-row items-center">
+          <ul className="flex flex-col items-center gap-4 font-bold md:flex-row md:gap-8">
             {navLinks.map(({ to, label }) => (
               <li key={to}>
                 <Link to={to} className="transition hover:text-pink-200">

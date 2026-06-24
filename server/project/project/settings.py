@@ -64,6 +64,7 @@ FRONTEND_URL = "https://velvet-eact-frontend.onrender.com"
 
 CORS_ALLOWED_ORIGINS = [
     "https://velvet-eact-frontend.onrender.com",
+    "https://velvet-eact.vercel.app",
     "http://127.0.0.1:3000",
     "http://localhost:3000",
 ]
@@ -73,6 +74,7 @@ if FRONTEND_URL and FRONTEND_URL not in CORS_ALLOWED_ORIGINS:
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
+    "https://velvet-eact.vercel.app",
     "http://127.0.0.1:3000",
 ]
 
